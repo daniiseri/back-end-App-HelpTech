@@ -3,15 +3,41 @@
 # !!!   DO NOT MODIFY THIS FILE BY YOURSELF   !!!
 # -----------------------------------------------
 
+type Alternative {
+  description: String!
+  id: ID!
+  idCategory: Int!
+  idQuest: Int!
+  level: Int!
+}
+
+type Category {
+  description: String!
+  id: ID!
+}
+
+type MergeCategory {
+  id: ID!
+  idCategoryOne: Int!
+  idCategoryTwo: Int!
+}
+
 type Mutation {
-  createQuest(description: String!): Quest!
+  createAlternative(description: String!, idCategory: Int!, idQuest: Int!, level: Int!): Alternative!
+  createCategory(description: String!): Category!
+  createMergeCategory(idCategoryOne: Int!, idCategoryTwo: Int!): MergeCategory!
+  createQuest(description: String!, idCategory: Int!): Quest!
 }
 
 type Query {
+  alternatives: [Alternative!]!
+  categories: [Category!]!
+  mergeCategories: [MergeCategory!]!
   quests: [Quest!]!
 }
 
 type Quest {
   description: String!
   id: ID!
+  idCategory: Int!
 }
