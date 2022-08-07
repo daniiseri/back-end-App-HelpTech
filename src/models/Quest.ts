@@ -1,11 +1,13 @@
-import { __Type } from "graphql";
-import { Field, ID, ObjectType } from "type-graphql";
+import { Field, ID, Int, ObjectType } from "type-graphql";
 
 @ObjectType()
 export class Quest{
-  @Field(__Type => ID)
-  id: string;
+  @Field(type => ID)
+  id: number;
 
-  @Field()
+  @Field(type => String)
   description: string;
+
+  @Field(type => Int)
+  idCategory: number;
 }
