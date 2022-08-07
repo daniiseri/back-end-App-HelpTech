@@ -1,12 +1,10 @@
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Args, Mutation, Query, Resolver } from "type-graphql";
 import { Quest } from "../models/Quest";
-import  crypto  from 'crypto';
-//query: buscar dados
-//mutation: criar, alterar ou deletar
+import { QuestArgs } from "../args/QuestArgs";
 
 @Resolver()
 export class QuestResolver{
-  private data: Quest[] = [];
+  private data: Quest[]=[];
 
   @Query(() => [Quest])
   async quests(){
@@ -15,12 +13,10 @@ export class QuestResolver{
 
   @Mutation(() => Quest)
   async createQuest(
-    @Arg('description') description: string
+    @Args() { description, idCategory }: QuestArgs
   ){
-    const quest = { id: crypto.randomUUID(), description };
-
+    const quest = { id: 1, description, idCategory };
     this.data.push(quest);
-
     return quest;
   }
 }
