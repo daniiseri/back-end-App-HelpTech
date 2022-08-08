@@ -1,4 +1,5 @@
 import { Field, ID, Int, ObjectType } from "type-graphql";
+import { QuestRepositories } from "../database/repositories/QuestRepositories";
 
 @ObjectType()
 export class Quest{
