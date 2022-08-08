@@ -1,22 +1,24 @@
 import { Args, Mutation, Query, Resolver } from "type-graphql";
 import { MergeCategory } from "../models/MergeCategory";
 import { MergeCategoryArgs } from "../args/MergeCategoryArgs";
+import { MergeCategoryServices } from "../services/MergeCategoryServices";
 
 @Resolver()
 export class MergeCategoryResolver{
-  private data: MergeCategory[]=[];
+  mergeServices: MergeCategoryServices;
+
+  constructor(){
+    this.mergeServices = new MergeCategoryServices();
+  }
 
   @Query(() => [MergeCategory])
   async mergeCategories(){
-    return this.data;
+    const mergeCategories = await this.mergeServices.getAll();
+    return mergeCategories[0];
   }
 
   @Mutation(() => MergeCategory)
-  async createMergeCategory(
-    @Args() { idCategoryOne, idCategoryTwo }: MergeCategoryArgs
-  ){
-    const mergeCategory = { id: 1, idCategoryOne, idCategoryTwo };
-    this.data.push(mergeCategory);
-    return mergeCategory;
+  async createMergeCategory(){
+    
   }
 }
