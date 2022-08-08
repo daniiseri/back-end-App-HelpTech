@@ -1,10 +1,15 @@
 import { Args, Mutation, Query, Resolver } from "type-graphql";
 import { Quest } from "../models/Quest";
 import { QuestArgs } from "../args/QuestArgs";
+import { QuestRepositories } from "../database/repositories/QuestRepositories";
 
 @Resolver()
 export class QuestResolver{
-  private data: Quest[]=[];
+  data: any;
+
+  constructor(){
+    this.data = new QuestRepositories().findAll();
+  }
 
   @Query(() => [Quest])
   async quests(){
