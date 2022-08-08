@@ -10,10 +10,7 @@ import { MergeCategoryResolver } from './src/resolvers/MergeCategoryResolver';
 async function main(){
   const schema = await buildSchema({
     resolvers: [
-      QuestResolver,
-      CategoryResolver,
-      AlternativeResolver,
-      MergeCategoryResolver
+      path.resolve(__dirname, 'src/resolvers/**Resolver.ts')
     ],
     emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
   })
