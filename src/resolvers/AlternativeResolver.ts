@@ -1,22 +1,23 @@
 import { Args, Mutation, Query, Resolver } from "type-graphql";
 import { Alternative } from "../models/Alternative";
 import { AlternativeArgs } from "../args/AlternativeArgs";
+import { AlternativeServices } from "../services/AlternativeServices";
 
 @Resolver()
 export class AlternativeResolver{
-  private data: Alternative[]=[];
+  alternativeServices: AlternativeServices;
+
+  constructor(){
+    this.alternativeServices = new AlternativeServices();
+  }
 
   @Query(() => [Alternative])
   async alternatives(){
-    return this.data;
+    const alternatives = await this.alternativeServices.getAll();
+    return alternatives[0];
   }
 
   @Mutation(() => Alternative)
-  async createAlternative(
-    @Args() { description, level, idCategory, idQuest }: AlternativeArgs
-  ){
-    const alternative = { id: 1, description, level, idCategory, idQuest };
-    this.data.push(alternative);
-    return alternative;
+  async createAlternative(){
   }
-}Alternative
+}
