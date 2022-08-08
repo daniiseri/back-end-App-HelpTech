@@ -1,6 +1,4 @@
-import { ContainerType } from 'type-graphql';
 import { MergeCategoryRepositories } from '../database/repositories/MergeCategoryRepositories';
-import { MergeCategory } from '../models/MergeCategory';
 
 export class MergeCategoryServices{
   mergeCategoryRepositories: MergeCategoryRepositories;

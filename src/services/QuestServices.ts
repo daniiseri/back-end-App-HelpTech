@@ -1,6 +1,4 @@
-import { ContainerType } from 'type-graphql';
 import { QuestRepositories } from '../database/repositories/QuestRepositories';
-import { Quest } from '../models/Quest';
 
 export class QuestServices{
   questRepositories: QuestRepositories;
