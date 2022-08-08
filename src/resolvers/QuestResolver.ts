@@ -1,27 +1,24 @@
 import { Args, Mutation, Query, Resolver } from "type-graphql";
 import { Quest } from "../models/Quest";
 import { QuestArgs } from "../args/QuestArgs";
-import { QuestRepositories } from "../database/repositories/QuestRepositories";
+import { QuestServices } from "../services/QuestServices";
 
 @Resolver()
 export class QuestResolver{
-  data: any;
+  questService: QuestServices;
 
   constructor(){
-    this.data = new QuestRepositories().findAll();
+    this.questService = new QuestServices();
   }
 
   @Query(() => [Quest])
   async quests(){
-    return this.data;
+    const quests = await this.questService.getAll();
+    return quests[0];
   }
 
   @Mutation(() => Quest)
-  async createQuest(
-    @Args() { description, idCategory }: QuestArgs
-  ){
-    const quest = { id: 1, description, idCategory };
-    this.data.push(quest);
-    return quest;
+  async createQuest(){
+    
   }
 }
