@@ -23,10 +23,23 @@ type MergeCategory {
 }
 
 type Mutation {
-  createAlternative: Alternative!
-  createCategory: Category!
+  createAlternative(idCategory: Float!, idQuests: Float!, newAlternativeData: NewAlternativeInput!): [Alternative!]!
+  createCategory(newCategoryData: NewCategoryInput!): [Category!]!
   createMergeCategory: MergeCategory!
-  createQuest: Quest!
+  createQuest(idCategory: Float!, newQuestData: NewQuestInput!): [Quest!]!
+}
+
+input NewAlternativeInput {
+  description: String!
+  level: Int!
+}
+
+input NewCategoryInput {
+  description: String!
+}
+
+input NewQuestInput {
+  description: String!
 }
 
 type Query {
