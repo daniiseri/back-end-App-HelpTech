@@ -2,10 +2,6 @@ import 'reflect-metadata';
 import path from 'path';
 import { ApolloServer } from 'apollo-server';
 import { buildSchema } from 'type-graphql';
-import { QuestResolver } from './src/resolvers/QuestResolver';
-import { CategoryResolver } from './src/resolvers/CategoryResolver';
-import { AlternativeResolver } from './src/resolvers/AlternativeResolver';
-import { MergeCategoryResolver } from './src/resolvers/MergeCategoryResolver';
 
 async function main(){
   const schema = await buildSchema({
