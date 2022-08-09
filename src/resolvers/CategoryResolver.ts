@@ -1,7 +1,7 @@
-import { Args, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
 import { Category } from "../models/Category";
-import { CategoryArgs } from "../args/CategoryArgs";
 import { CategoryServices } from "../services/CategoryServices";
+import { NewCategoryInput } from "../input/NewCategoryInput";
 
 @Resolver()
 export class CategoryResolver{
@@ -17,8 +17,11 @@ export class CategoryResolver{
     return categories[0];
   }
 
-  @Mutation(() => Category)
-  async createCategory(){
-   
+  @Mutation(() => [Category])
+  async createCategory(
+    @Arg("newCategoryData") newCategoryData: NewCategoryInput
+  ){
+    const newCategory = await this.categoryServices.create( newCategoryData );
+    return newCategory;
   }
 }
