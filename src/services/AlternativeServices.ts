@@ -12,4 +12,10 @@ export class AlternativeServices{
 
     return alternatives;
   }
+
+  async create(data: any){
+    const newAlternative = await this.alternativeRepositories.create(data);
+
+    return newAlternative;
+  }
 }
