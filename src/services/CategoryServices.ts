@@ -1,4 +1,6 @@
 import { CategoryRepositories } from '../database/repositories/CategoryRepositories';
+import { NewCategoryInput } from '../input/NewCategoryInput';
+import { Category } from '../models/Category';
 
 export class CategoryServices{
   categoryRepositories: CategoryRepositories;
@@ -12,4 +14,11 @@ export class CategoryServices{
 
     return categories;
   }
+
+  async create(data: any){
+    const newCategory = await this.categoryRepositories.create(data);
+
+    return newCategory;
+  }
+  
 }
