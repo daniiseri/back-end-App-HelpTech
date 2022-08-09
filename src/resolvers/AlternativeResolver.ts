@@ -1,6 +1,6 @@
-import { Args, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { NewAlternativeInput } from "../input/NewAlternativeInput";
 import { Alternative } from "../models/Alternative";
-import { AlternativeArgs } from "../args/AlternativeArgs";
 import { AlternativeServices } from "../services/AlternativeServices";
 
 @Resolver()
@@ -17,7 +17,13 @@ export class AlternativeResolver{
     return alternatives[0];
   }
 
-  @Mutation(() => Alternative)
-  async createAlternative(){
+  @Mutation(() => [Alternative])
+  async createAlternative(
+    @Arg("newAlternativeData") newAlternativeData: NewAlternativeInput,
+    @Arg("idCategory") idCategory: number,
+    @Arg("idQuests") idQuest: number
+  ){
+    const newAlternative = await this.alternativeServices.create({newAlternativeData, idCategory, idQuest});
+    return newAlternative;
   }
 }
