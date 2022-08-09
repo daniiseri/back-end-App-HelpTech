@@ -1,6 +1,6 @@
-import { Args, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { NewQuestInput } from "../input/NewQuestInput";
 import { Quest } from "../models/Quest";
-import { QuestArgs } from "../args/QuestArgs";
 import { QuestServices } from "../services/QuestServices";
 
 @Resolver()
@@ -17,8 +17,12 @@ export class QuestResolver{
     return quests[0];
   }
 
-  @Mutation(() => Quest)
-  async createQuest(){
-    
+  @Mutation(() => [Quest])
+  async createQuest(
+    @Arg("newQuestData") newQuestData: NewQuestInput,
+    @Arg("idCategory") idCategory: number
+  ){
+    const newQuest = await this.questService.create({newQuestData, idCategory});
+    return newQuest;
   }
 }
