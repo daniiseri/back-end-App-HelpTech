@@ -28,6 +28,7 @@ type Mutation {
   createMergeCategory: MergeCategory!
   createQuest(idCategory: Float!, newQuestData: NewQuestInput!): [Quest!]!
   createUser(newUserInput: NewUserInput!): [User!]!
+  createUserResponse(newUserResolverInput: NewUserResponseInput!): [UserResponse!]!
 }
 
 input NewAlternativeInput {
@@ -49,11 +50,17 @@ input NewUserInput {
   password: String!
 }
 
+input NewUserResponseInput {
+  idAlternative: Int!
+  idUser: Int!
+}
+
 type Query {
   alternatives: [Alternative!]!
   categories: [Category!]!
   mergeCategories: [MergeCategory!]!
   quests: [Quest!]!
+  userReponses: [UserResponse!]!
   users: [User!]!
 }
 
@@ -68,4 +75,10 @@ type User {
   id: ID!
   name: String!
   password: String!
+}
+
+type UserResponse {
+  id: ID!
+  idAlternative: Float!
+  idUser: Float!
 }
