@@ -1,8 +1,7 @@
-import { Length } from "class-validator";
 import { Field, ID, ObjectType } from "type-graphql";
 
 @ObjectType()
-export class Use{
+export class User{
   @Field(type => ID)
   id: number;
 
@@ -13,6 +12,5 @@ export class Use{
   email: string;
 
   @Field()
-  @Length(6, 20)
   password: string;
 }
