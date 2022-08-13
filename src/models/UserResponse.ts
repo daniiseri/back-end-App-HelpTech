@@ -1,12 +1,12 @@
 import { Field, ID, ObjectType } from "type-graphql";
 
 @ObjectType()
-export class Response{
+export class UserResponse{
   @Field(type => ID)
   id: number;
 
   @Field()
-  idALternative: number;
+  idAlternative: number;
 
   @Field()
   idUser: number;
