@@ -20,7 +20,6 @@ export class UserRepositories{
     const query = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
     const create  = await conn.execute(query, [data.name, data.email, data.password]);
     const user = await this.findById(create[0].insertId);
-    console.log(user[0]);
     return user[0];
   }
 }
