@@ -16,10 +16,24 @@ type Category {
   id: ID!
 }
 
+type Login {
+  error: String
+  message: Message!
+  result: String!
+  token: String
+  user: User
+}
+
 type MergeCategory {
   id: ID!
   idCategoryOne: Int!
   idCategoryTwo: Int!
+}
+
+type Message {
+  error: String
+  token: String
+  user: User
 }
 
 type Mutation {
@@ -29,6 +43,7 @@ type Mutation {
   createQuest(idCategory: Float!, newQuestData: NewQuestInput!): [Quest!]!
   createUser(newUserInput: NewUserInput!): [User!]!
   createUserResponse(newUserResolverInput: NewUserResponseInput!): [UserResponse!]!
+  login(email: String!, password: String!): Login!
 }
 
 input NewAlternativeInput {
