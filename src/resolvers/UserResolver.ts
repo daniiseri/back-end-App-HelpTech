@@ -4,7 +4,7 @@ import { User } from '../models/User';
 import { NewUserInput } from '../input/NewUserInput';
 
 @Resolver()
-export class UserRsolver{
+export class UserResolver{
   userServices: UserServices;
 
   constructor(){

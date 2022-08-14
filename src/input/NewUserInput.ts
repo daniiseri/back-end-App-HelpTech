@@ -7,7 +7,6 @@ export class NewUserInput{
   name: string;
 
   @Field()
-  @Length(6, 20)
   email: string;
 
   @Field()
