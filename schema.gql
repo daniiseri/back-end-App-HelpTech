@@ -17,11 +17,8 @@ type Category {
 }
 
 type Login {
-  error: String
   message: Message!
   result: String!
-  token: String
-  user: User
 }
 
 type MergeCategory {
