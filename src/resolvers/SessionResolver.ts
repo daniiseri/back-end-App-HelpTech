@@ -1,7 +1,6 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { SessionServices } from "../services/SessionServices";
 import { Login } from '../models/Login';
-import { User } from "../models/User";
 
 
 @Resolver()
