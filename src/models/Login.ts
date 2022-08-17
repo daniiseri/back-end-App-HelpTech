@@ -14,7 +14,7 @@ export class Message{
 }
 
 @ObjectType()
-export class Login extends Message{
+export class Login{
   @Field()
   result: string;
 
