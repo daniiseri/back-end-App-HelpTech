@@ -16,6 +16,13 @@ type Category {
   id: ID!
 }
 
+type Hardware {
+  id: ID!
+  model: String!
+  price: Float!
+  type: Type!
+}
+
 type Login {
   message: Message!
   result: String!
@@ -36,8 +43,10 @@ type Message {
 type Mutation {
   createAlternative(idCategory: Float!, idQuests: Float!, newAlternativeData: NewAlternativeInput!): [Alternative!]!
   createCategory(newCategoryData: NewCategoryInput!): [Category!]!
+  createHardware(newHardwareInput: NewHardwareInput!): Hardware!
   createMergeCategory: MergeCategory!
   createQuest(idCategory: Float!, newQuestData: NewQuestInput!): [Quest!]!
+  createType(newTypeInput: NewTypeInput!): Type!
   createUser(newUserInput: NewUserInput!): [User!]!
   createUserResponse(newUserResolverInput: NewUserResponseInput!): [UserResponse!]!
   login(email: String!, password: String!): Login!
@@ -52,7 +61,18 @@ input NewCategoryInput {
   description: String!
 }
 
+input NewHardwareInput {
+  capacity: Float!
+  idType: Float!
+  model: String!
+  price: Float!
+}
+
 input NewQuestInput {
+  description: String!
+}
+
+input NewTypeInput {
   description: String!
 }
 
@@ -70,8 +90,11 @@ input NewUserResponseInput {
 type Query {
   alternatives: [Alternative!]!
   categories: [Category!]!
+  hardwares: [Hardware!]!
   mergeCategories: [MergeCategory!]!
   quests: [Quest!]!
+  type: [Type!]!
+  types: [Type!]!
   userReponses: [UserResponse!]!
   users: [User!]!
 }
@@ -80,6 +103,11 @@ type Quest {
   description: String!
   id: ID!
   idCategory: Int!
+}
+
+type Type {
+  description: String!
+  id: ID!
 }
 
 type User {
