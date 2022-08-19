@@ -17,6 +17,7 @@ type Category {
 }
 
 type Hardware {
+  capacity: Float!
   id: ID!
   model: String!
   price: Float!
