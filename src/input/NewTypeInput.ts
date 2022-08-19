@@ -1,16 +1,7 @@
-import { Field, ObjectType } from "type-graphql";
+import { Field, InputType } from "type-graphql";
 
-@ObjectType()
+@InputType()
 export class NewTypeInput{
   @Field()
-  model: string;
-
-  @Field()
-  capacity: number;
-
-  @Field()
-  price: number;
-
-  @Field()
-  idType: number;
+  description:string;
 }

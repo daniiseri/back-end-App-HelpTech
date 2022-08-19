@@ -27,7 +27,6 @@ export class UserRepositories{
     const conn = await connectToMySql();
     const query = 'INSERT INTO user (name, email, password) VALUES (?, ?, ?)';
     const hash = await encryptPassword(data.password);
-    console.log(hash);
     const create  = await conn.execute(query, [data.name, data.email, hash]);
     const user = await this.findById(create[0].insertId);
     return user[0];
