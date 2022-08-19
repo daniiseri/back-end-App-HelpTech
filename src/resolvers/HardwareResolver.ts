@@ -28,9 +28,9 @@ export class HardwareResolver{
   async hardwares(){
     const hardwares = await this.hardwareServices.getHardwares();
     const results = hardwares[0].map(async (res:any) => {
-    const {id, model, price} = res;
+    const {id, model, capacity, price} = res;
     const type = await this.type(res.idType);
-    return {id, model, price, type};
+    return {id, model, capacity, price, type};
     })
     return results;
   } 
