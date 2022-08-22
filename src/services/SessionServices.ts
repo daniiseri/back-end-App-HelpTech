@@ -1,6 +1,6 @@
 import { checkPassword } from '../utils/bcrypt';
 import { UserRepositories } from '../database/repositories/UserRepositories';
-import jwt from 'jsonwebtoken';
+import { generateToken } from '../utils/generateToken';
 
 const authConfig = require('../config/auth');
  
@@ -22,10 +22,6 @@ export class SessionServices{
 
     userFound[0].password = undefined;
 
-    const token = jwt.sign({ id: userFound[0].id }, authConfig.secret, {
-      expiresIn: 86400
-    });
-
-    return { result:'Sucess' , message: {user: userFound[0], token: token} };
+    return { result:'Sucess' , message: {user: userFound[0], token: generateToken({id: userFound[0].id})} };
   }
 }
