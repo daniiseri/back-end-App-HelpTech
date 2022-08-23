@@ -14,14 +14,16 @@ export class SessionServices{
   async login(email: string, password: string){
     const userFound = await this.userRepositories.findUser(email);
 
-    if(!userFound[0])
+    const [user] = Object.values(userFound);
+
+    if(!user)
     return { result:'Sucess',  message: {error: 'Usuário não encontrado!'}};
 
-    if(! await checkPassword(password, userFound[0].password))
+    if(! await checkPassword(password, user.password))
     return { result:'Sucess',  message: {error: 'Senha inválida!'}};
 
-    userFound[0].password = undefined;
+    user.password = undefined;
 
-    return { result:'Sucess' , message: {user: userFound[0], token: generateToken({id: userFound[0].id})} };
+    return { result:'Sucess' , message: {user, token: generateToken({id: user.id})} };
   }
 }
