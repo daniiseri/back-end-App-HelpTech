@@ -25,20 +25,15 @@ type Hardware {
 }
 
 type Login {
-  message: Message!
-  result: String!
+  error: Boolean!
+  token: String
+  user: User
 }
 
 type MergeCategory {
   id: ID!
   idCategoryOne: Int!
   idCategoryTwo: Int!
-}
-
-type Message {
-  error: String
-  token: String
-  user: User
 }
 
 type Mutation {
@@ -115,7 +110,7 @@ type User {
   email: String!
   id: ID!
   name: String!
-  password: String
+  password: String!
 }
 
 type UserResponse {
