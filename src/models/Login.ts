@@ -1,23 +1,14 @@
-import { Field, InterfaceType, ObjectType } from "type-graphql";
+import { Field, ObjectType } from "type-graphql";
 import { User } from "./User";
 
 @ObjectType()
-export class Message{
+export class Login{
   @Field({nullable: true})
   user: User;
 
   @Field({nullable: true})
   token: string;
 
-  @Field({nullable: true})
-  error: string;
-}
-
-@ObjectType()
-export class Login{
-  @Field()
-  result: string;
-
-  @Field()
-  message: Message;
+  @Field(type => Boolean)
+  error: boolean;
 }
