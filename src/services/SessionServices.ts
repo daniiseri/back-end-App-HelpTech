@@ -17,13 +17,13 @@ export class SessionServices{
     const [user] = Object.values(userFound);
 
     if(!user)
-    return { result:'Sucess',  message: {error: 'Usuário não encontrado!'}};
+    return {error: true};
 
     if(! await checkPassword(password, user.password))
-    return { result:'Sucess',  message: {error: 'Senha inválida!'}};
+    return {error: true};
 
     user.password = undefined;
 
-    return { result:'Sucess' , message: {user, token: generateToken({id: user.id})} };
+    return { user, token: generateToken({id: user.id}), error: false};
   }
 }
