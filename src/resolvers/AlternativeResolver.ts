@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewAlternativeInput } from "../input/NewAlternativeInput";
 import { Alternative } from "../models/Alternative";
 import { AlternativeServices } from "../services/AlternativeServices";
@@ -17,6 +17,7 @@ export class AlternativeResolver{
     return alternatives[0];
   }
 
+  @Authorized('admin')
   @Mutation(() => [Alternative])
   async createAlternative(
     @Arg("newAlternativeData") newAlternativeData: NewAlternativeInput,

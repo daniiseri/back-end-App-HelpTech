@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Category } from "../models/Category";
 import { CategoryServices } from "../services/CategoryServices";
 import { NewCategoryInput } from "../input/NewCategoryInput";
@@ -17,6 +17,7 @@ export class CategoryResolver{
     return categories[0];
   }
 
+  @Authorized('admin')
   @Mutation(() => [Category])
   async createCategory(
     @Arg("newCategoryData") newCategoryData: NewCategoryInput

@@ -1,6 +1,5 @@
-import { Args, Mutation, Query, Resolver } from "type-graphql";
+import { Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { MergeCategory } from "../models/MergeCategory";
-import { MergeCategoryArgs } from "../args/MergeCategoryArgs";
 import { MergeCategoryServices } from "../services/MergeCategoryServices";
 
 @Resolver()
@@ -17,6 +16,7 @@ export class MergeCategoryResolver{
     return mergeCategories[0];
   }
 
+  @Authorized('admin')
   @Mutation(() => MergeCategory)
   async createMergeCategory(){
     

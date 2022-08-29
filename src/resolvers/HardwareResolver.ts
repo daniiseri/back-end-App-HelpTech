@@ -1,4 +1,4 @@
-import { Arg, Mutation, Query, Resolver } from "type-graphql";
+import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewHardwareInput } from '../input/NewHardwareInput';
 import { NewTypeInput } from "../input/NewTypeInput";
 import { Hardware, Type } from "../models/Hardware";
@@ -35,6 +35,7 @@ export class HardwareResolver{
     return results;
   } 
 
+  @Authorized('admin')
   @Mutation(() => Type)
   async createType(
     @Arg("newTypeInput") newTypeInput: NewTypeInput
@@ -43,6 +44,7 @@ export class HardwareResolver{
     return type[0];
   }
 
+  @Authorized('admin')
   @Mutation(() => Hardware)
   async createHardware(
     @Arg("newHardwareInput") newHadwareInput: NewHardwareInput
