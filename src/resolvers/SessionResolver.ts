@@ -1,7 +1,6 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { SessionServices } from "../services/SessionServices";
-import { Login } from '../models/Login';
-
+import { ContextType } from '../models/Login';
 
 @Resolver()
 export class SessionResolver{
@@ -11,7 +10,7 @@ export class SessionResolver{
     this.sessionServices = new SessionServices();
   }
 
-  @Mutation(() => Login)
+  @Mutation(() => ContextType)
   async login(
     @Arg("email") email: string,
     @Arg("password") password: string
