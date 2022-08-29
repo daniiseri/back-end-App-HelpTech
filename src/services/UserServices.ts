@@ -12,6 +12,11 @@ export class UserServices{
     return users;
   }
 
+  async getById(code: number){
+    const [user] = await this.userRepositories.findById(code);
+    return user;
+  }
+
   async create(data: any){
     const newUser = await this.userRepositories.create(data);
 
