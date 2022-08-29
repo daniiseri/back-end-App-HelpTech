@@ -6,3 +6,7 @@ export const generateToken = (params:{}) => {
     expiresIn: 86400
   }));
 }
+
+export const verifyToken = (token: string) => {
+  return jwt.verify(token, authConfig.secret);
+}
