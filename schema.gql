@@ -16,18 +16,18 @@ type Category {
   id: ID!
 }
 
+type ContextType {
+  error: Boolean!
+  token: String
+  user: User
+}
+
 type Hardware {
   capacity: Float!
   id: ID!
   model: String!
   price: Float!
   type: Type!
-}
-
-type Login {
-  error: Boolean!
-  token: String
-  user: User
 }
 
 type MergeCategory {
@@ -45,7 +45,7 @@ type Mutation {
   createType(newTypeInput: NewTypeInput!): Type!
   createUser(newUserInput: NewUserInput!): [User!]!
   createUserResponse(newUserResolverInput: NewUserResponseInput!): [UserResponse!]!
-  login(email: String!, password: String!): Login!
+  login(email: String!, password: String!): ContextType!
 }
 
 input NewAlternativeInput {
