@@ -20,9 +20,9 @@ export class CategoryResolver{
   @Authorized('admin')
   @Mutation(() => [Category])
   async createCategory(
-    @Arg("newCategoryData") newCategoryData: NewCategoryInput
+    @Arg("newCategoryInput") newCategoryInput: NewCategoryInput
   ){
-    const newCategory = await this.categoryServices.create( newCategoryData );
+    const newCategory = await this.categoryServices.create( newCategoryInput );
     return newCategory;
   }
 }
