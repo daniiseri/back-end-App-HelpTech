@@ -4,20 +4,6 @@ import { Hardware, Type } from '../../models/Hardware';
 import { connectToMySql } from '../index';
 
 export class HardwareRepositories{
-  async findTypes(){
-    const conn = await connectToMySql();
-    const query = 'SELECT * FROM type';
-    const type = await conn.execute(query);
-    return type;
-  }
-
-  async findTypeById(code: number){
-    const conn = await connectToMySql();
-    const query = 'SELECT * FROM type WHERE id=?';
-    const type = await conn.execute(query, [code]);
-    return type[0];
-  }
-
   async findHardwares(){
     const conn = await connectToMySql();
     const query = 'SELECT * FROM hardware';
@@ -47,6 +33,27 @@ export class HardwareRepositories{
     return hardware;
   }
 
+  async deleteHardware(code:number){
+    const conn = await connectToMySql();
+    const query = 'DELETE FROM hardware WHERE id=?';
+    const result = await conn.execute(query, [code]);
+    return result;
+  }
+
+  async findTypes(){
+    const conn = await connectToMySql();
+    const query = 'SELECT * FROM type';
+    const type = await conn.execute(query);
+    return type;
+  }
+
+  async findTypeById(code: number){
+    const conn = await connectToMySql();
+    const query = 'SELECT * FROM type WHERE id=?';
+    const type = await conn.execute(query, [code]);
+    return type[0];
+  }
+
   async createType(data:NewTypeInput){
     const conn = await connectToMySql();
     const query = 'INSERT INTO type (description) VALUES (?)';
@@ -61,5 +68,12 @@ export class HardwareRepositories{
     await conn.execute(query, [data.description, data.id]);
     const type = await this.findTypeById(data.id);
     return type;
+  }
+
+  async deleteType(code:number){
+    const conn = await connectToMySql();
+    const query = 'DELETE FROM type WHERE id=?';
+    const result = await conn.execute(query, [code]);
+    return result;
   }
 }

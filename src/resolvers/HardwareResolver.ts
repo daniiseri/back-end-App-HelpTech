@@ -24,17 +24,6 @@ export class HardwareResolver{
     return type[0];
   }
 
-  @Query(() => [Hardware])
-  async hardwares(){
-    const hardwares = await this.hardwareServices.getHardwares();
-    const results = hardwares[0].map(async (res:any) => {
-    const {id, model, capacity, price} = res;
-    const type = await this.type(res.idType);
-    return {id, model, capacity, price, type};
-    })
-    return results;
-  } 
-
   @Authorized('admin')
   @Mutation(() => Type)
   async createType(
@@ -53,6 +42,27 @@ export class HardwareResolver{
     const type = await this.hardwareServices.updateType({id, description});
     return type[0];
   }
+
+  @Authorized('admin')
+  @Mutation(() => Boolean)
+  async deleteType(
+    @Arg("id") id: number
+  ){
+    const [result] = await this.hardwareServices.deleteType(id);
+    const {affectedRows} = result;
+    return affectedRows > 0;
+  }
+
+  @Query(() => [Hardware])
+  async hardwares(){
+    const hardwares = await this.hardwareServices.getHardwares();
+    const results = hardwares[0].map(async (res:any) => {
+    const {id, model, capacity, price} = res;
+    const type = await this.type(res.idType);
+    return {id, model, capacity, price, type};
+    })
+    return results;
+  } 
 
   @Authorized('admin')
   @Mutation(() => Hardware)
@@ -77,5 +87,15 @@ export class HardwareResolver{
     await this.hardwareServices.updateHardware({id, model, capacity, price, type:{id:idType}});
     const type = await this.hardwareServices.getTypeById(idType);
     return {id, model, capacity, price, type: type[0]};
+  }
+
+  @Authorized('admin')
+  @Mutation(() => Boolean)
+  async deleteHardware(
+    @Arg("id") id: number
+  ){
+    const [result] = await this.hardwareServices.deleteHardware(id);
+    const {affectedRows} = result;
+    return affectedRows > 0;
   }
 }
