@@ -17,7 +17,16 @@ export class QuestServices{
 
   async create(data: any){
     const newQuest = await this.questRepositories.create(data);
-
     return newQuest;
+  }
+
+  async update(data: Quest){
+    const quest = await this.questRepositories.update(data);
+    return quest;
+  }
+
+  async delete(code: number){
+    const result = await this.questRepositories.delete(code);
+    return result;
   }
 }

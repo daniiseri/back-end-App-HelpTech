@@ -26,4 +26,26 @@ export class QuestResolver{
     const newQuest = await this.questService.create({newQuestData, idCategory});
     return newQuest;
   }
+
+  @Authorized('admin')
+  @Mutation(() => [Quest])
+  async updateQuest(
+    @Arg("id") id: number,
+    @Arg("description") description: string,
+    @Arg("idCategory") idCategory: number
+  ){
+    const quest = await this.questService.update({id, description, idCategory});
+    return quest;
+  }
+
+  
+  @Authorized('admin')
+  @Mutation(() => Boolean)
+  async deleteQuest(
+    @Arg("id") id: number
+  ){
+    const [result] = await this.questService.delete(id);
+    const {affectedRows} = result;
+    return affectedRows > 0;
+  }
 }
