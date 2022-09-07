@@ -1,3 +1,4 @@
+import { Category } from "../../models/Category";
 import { connectToMySql } from "../index";
 
 export class CategoryRepositories{
@@ -21,6 +22,14 @@ export class CategoryRepositories{
     const create  = await conn.execute(query, [data.description]);
     const category = await this.findById(create[0].insertId);
     
+    return category[0];
+  }
+
+  async update(data: Category){
+    const conn = await connectToMySql();
+    const query = 'UPDATE category SET description=? WHERE id=?';
+    await conn.execute(query, [data.description, data.id]);
+    const category = await this.findById(data.id);
     return category[0];
   }
 }

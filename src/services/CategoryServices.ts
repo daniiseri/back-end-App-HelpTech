@@ -20,5 +20,10 @@ export class CategoryServices{
 
     return newCategory;
   }
+
+  async update(data: Category){
+    const category = await this.categoryRepositories.update(data);
+    return category;
+  }
   
 }

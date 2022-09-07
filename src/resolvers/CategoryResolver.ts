@@ -25,4 +25,14 @@ export class CategoryResolver{
     const newCategory = await this.categoryServices.create( newCategoryInput );
     return newCategory;
   }
+
+  @Authorized('admin')
+  @Mutation(() => [Category])
+  async updateCategory(
+    @Arg("id") id: number,
+    @Arg("description") description: string
+  ){
+    const category = await this.categoryServices.update({id, description});
+    return category;
+  }
 }
