@@ -6,7 +6,7 @@ export class Type{
   id: number;
 
   @Field()
-  description: string;
+  description?: string;
 }
 
 @ObjectType()

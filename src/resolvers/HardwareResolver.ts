@@ -45,6 +45,16 @@ export class HardwareResolver{
   }
 
   @Authorized('admin')
+  @Mutation(() => Type)
+  async updateType(
+    @Arg("id") id: number,
+    @Arg("description") description: string
+  ){
+    const type = await this.hardwareServices.updateType({id, description});
+    return type[0];
+  }
+
+  @Authorized('admin')
   @Mutation(() => Hardware)
   async createHardware(
     @Arg("newHardwareInput") newHadwareInput: NewHardwareInput
@@ -52,6 +62,20 @@ export class HardwareResolver{
     const hardware = await this.hardwareServices.createHardware(newHadwareInput);
     const type = await this.hardwareServices.getTypeById(hardware[0].idType);
     const {id, model, capacity, price} = hardware[0];
+    return {id, model, capacity, price, type: type[0]};
+  }
+
+  @Authorized('admin')
+  @Mutation(() => Hardware)
+  async updateHardware(
+    @Arg("id") id: number,
+    @Arg("model") model: string,
+    @Arg("capacity") capacity: number,
+    @Arg("price") price: number,
+    @Arg("idType") idType: number
+  ){
+    await this.hardwareServices.updateHardware({id, model, capacity, price, type:{id:idType}});
+    const type = await this.hardwareServices.getTypeById(idType);
     return {id, model, capacity, price, type: type[0]};
   }
 }

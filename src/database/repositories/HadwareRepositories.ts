@@ -1,5 +1,6 @@
 import { NewHardwareInput } from '../../input/NewHardwareInput';
 import { NewTypeInput } from '../../input/NewTypeInput';
+import { Hardware, Type } from '../../models/Hardware';
 import { connectToMySql } from '../index';
 
 export class HardwareRepositories{
@@ -38,11 +39,27 @@ export class HardwareRepositories{
     return hardware;
   }
 
+  async updateHardware({type, ...rest}: Hardware){
+    const conn = await connectToMySql();
+    const query = 'UPDATE hardware SET model=?, capacity=?, price=?, idType=? WHERE id=?';
+    await conn.execute(query, [rest.model, rest.capacity, rest.price, type.id, rest.id]);
+    const hardware = await this.findHardwareById(rest.id);
+    return hardware;
+  }
+
   async createType(data:NewTypeInput){
     const conn = await connectToMySql();
     const query = 'INSERT INTO type (description) VALUES (?)';
     const create = await conn.execute(query, [data.description]);
     const type = await this.findTypeById(create[0].insertId);
+    return type;
+  }
+
+  async updateType(data: Type){
+    const conn = await connectToMySql();
+    const query = 'UPDATE type SET description=? WHERE id=?';
+    await conn.execute(query, [data.description, data.id]);
+    const type = await this.findTypeById(data.id);
     return type;
   }
 }
