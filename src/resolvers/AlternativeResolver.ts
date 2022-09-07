@@ -27,4 +27,29 @@ export class AlternativeResolver{
     const newAlternative = await this.alternativeServices.create({newAlternativeData, idCategory, idQuest});
     return newAlternative;
   }
+
+  
+  @Authorized('admin')
+  @Mutation(() => [Alternative])
+  async updateAlternative(
+    @Arg("id") id: number,
+    @Arg("description") description: string,
+    @Arg("level") level: number,
+    @Arg("idCategory") idCategory: number,
+    @Arg("idQuests") idQuest: number
+  ){
+    const alternative = await this.alternativeServices.update({id, description, level, idCategory, idQuest});
+    return alternative;
+  }
+
+   
+  @Authorized('admin')
+  @Mutation(() => Boolean)
+  async deleteAlternative(
+    @Arg("id") id: number
+  ){
+    const [result] = await this.alternativeServices.delete(id);
+    const {affectedRows} = result;
+    return affectedRows > 0;
+  }
 }
