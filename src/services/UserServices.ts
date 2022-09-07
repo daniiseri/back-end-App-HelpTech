@@ -27,4 +27,9 @@ export class UserServices{
     const user = await this.userRepositories.update(data);
     return user;
   }
+
+  async delete(code: number){
+    const result = await this.userRepositories.delete(code);
+    return result;
+  }
 }

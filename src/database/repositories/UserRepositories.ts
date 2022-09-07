@@ -42,4 +42,11 @@ export class UserRepositories{
     const user = await this.findById(data.id);
     return user[0];
   }
+
+  async delete(code: number){
+    const conn = await connectToMySql();
+    const query = 'DELETE FROM user WHERE id=?';
+    const result = await conn.execute(query, [code]);
+    return result;
+  }
 }

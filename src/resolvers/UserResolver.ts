@@ -35,4 +35,13 @@ export class UserResolver{
     const user = await this.userServices.update({id, name, email, password});
     return user;
   }
+
+  @Mutation(() => Boolean)
+  async deleteUser(
+    @Arg("id") code: number
+  ){
+    const [result]= await this.userServices.delete(code);
+    const {affectedRows} = await result;
+    return affectedRows > 0;
+  }
 }
