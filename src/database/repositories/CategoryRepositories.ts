@@ -32,4 +32,11 @@ export class CategoryRepositories{
     const category = await this.findById(data.id);
     return category[0];
   }
+
+  async delete(code: number){
+    const conn = await connectToMySql();
+    const query = 'DELETE FROM category WHERE id=?';
+    const result = await conn.execute(query, [code]);
+    return result;
+  }
 }

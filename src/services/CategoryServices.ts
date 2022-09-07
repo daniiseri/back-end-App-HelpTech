@@ -25,5 +25,9 @@ export class CategoryServices{
     const category = await this.categoryRepositories.update(data);
     return category;
   }
-  
+
+  async delete(code: number){
+    const result = await this.categoryRepositories.delete(code);
+    return result;
+  }
 }

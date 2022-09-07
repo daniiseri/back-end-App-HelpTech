@@ -35,4 +35,14 @@ export class CategoryResolver{
     const category = await this.categoryServices.update({id, description});
     return category;
   }
+
+  @Authorized('admin')
+  @Mutation(() => Boolean)
+  async deleteCategory(
+    @Arg("id") id: number
+  ){
+    const [result] = await this.categoryServices.delete(id);
+    const {affectedRows} = result
+    return affectedRows > 0;
+  }
 }
