@@ -1,4 +1,5 @@
 import { UserResponseRepositories } from "../database/repositories/UserResponseRepositories";
+import { NewUserResponseInput } from "../input/NewUserResponseInput";
 
 export class UserResponseServices{
   userResponseRepositories: UserResponseRepositories;
@@ -11,7 +12,11 @@ export class UserResponseServices{
     return this.userResponseRepositories.findAll();
   }
 
-  async create(newUserResponseInput: any){
+  async getByUser(code:number){
+    return this.userResponseRepositories.findByUser(code);
+  }
+
+  async create(newUserResponseInput: NewUserResponseInput){
     return this.userResponseRepositories.create(newUserResponseInput);
   } 
 }
