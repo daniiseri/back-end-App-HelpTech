@@ -10,4 +10,7 @@ export class UserResponse{
 
   @Field()
   idUser: number;
+
+  @Field()
+  date: Date;
 }
