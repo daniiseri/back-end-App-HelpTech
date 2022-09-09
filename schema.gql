@@ -57,6 +57,7 @@ type Mutation {
   deleteType(id: Float!): Boolean!
   deleteUser(id: Float!): Boolean!
   login(email: String!, password: String!): ContextType!
+  udateUserResponse(id: Float!, idAlternative: Float!): [UserResponse!]!
   updateAlternative(description: String!, id: Float!, idCategory: Float!, idQuests: Float!, level: Float!): [Alternative!]!
   updateCategory(description: String!, id: Float!): [Category!]!
   updateHardware(capacity: Float!, id: Float!, idType: Float!, model: String!, price: Float!): Hardware!

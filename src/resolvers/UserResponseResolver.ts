@@ -32,4 +32,13 @@ export class UserResponseResolver{
     const userResponse = await this.userResponseServices.create(newUserResponseInput);
     return userResponse;
   }
+
+  @Mutation(() => [UserResponse])
+  async udateUserResponse(
+    @Arg("id") id: number,
+    @Arg("idAlternative") idAlternative: number
+  ){
+    const userResponse = await this.userResponseServices.update({id, idAlternative});
+    return userResponse;
+  }
 }

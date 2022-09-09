@@ -1,4 +1,5 @@
 import { NewUserResponseInput } from '../../input/NewUserResponseInput';
+import { UserResponse } from '../../models/UserResponse';
 import { connectToMySql } from '../index';
 
 export class UserResponseRepositories{
@@ -28,6 +29,14 @@ export class UserResponseRepositories{
     const query = 'INSERT INTO user_response (idAlternative, idUser) VALUES (?, ?)';
     const create = await conn.execute(query, [data.idAlternative, data.idUser]);
     const userResponse = await this.findById(create[0].insertId);
+    return userResponse[0];
+  }
+
+  async update(data: any){
+    const conn = await connectToMySql();
+    const query = 'UPDATE user_response SET idAlternative=? WHERE id=?';
+    await conn.execute(query, [data.idAlternative, data.id]);
+    const userResponse = await this.findById(data.id);
     return userResponse[0];
   }
 }
