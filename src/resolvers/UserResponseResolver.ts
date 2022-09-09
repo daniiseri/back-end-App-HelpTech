@@ -25,6 +25,7 @@ export class UserResponseResolver{
     return userReponses[0];
   }
 
+  @Authorized()
   @Mutation(() => [UserResponse])
   async createUserResponse(
     @Arg("newUserResponseInput") newUserResponseInput: NewUserResponseInput
@@ -33,6 +34,7 @@ export class UserResponseResolver{
     return userResponse;
   }
 
+  @Authorized()
   @Mutation(() => [UserResponse])
   async udateUserResponse(
     @Arg("id") id: number,
@@ -40,5 +42,15 @@ export class UserResponseResolver{
   ){
     const userResponse = await this.userResponseServices.update({id, idAlternative});
     return userResponse;
+  }
+
+  @Authorized()
+  @Mutation(() => Boolean)
+  async deleteUserResponse(
+    @Arg("id") code: number
+  ){
+    const result = await this.userResponseServices.delete(code);
+    const {affectedRows} = result;
+    return affectedRows > 0;
   }
 }

@@ -39,4 +39,11 @@ export class UserResponseRepositories{
     const userResponse = await this.findById(data.id);
     return userResponse[0];
   }
+
+  async delete(code:number){
+    const conn = await connectToMySql();
+    const query = 'DELETE FROM user_response WHERE id=?';
+    const result = await conn.execute(query, [code]);
+    return result[0];
+  }
 }

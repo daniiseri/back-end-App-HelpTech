@@ -24,4 +24,8 @@ export class UserResponseServices{
   async update(data:any){
     return this.userResponseRepositories.update(data);
   } 
+
+  async delete(code:number){
+    return this.userResponseRepositories.delete(code);
+  } 
 }
