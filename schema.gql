@@ -6,8 +6,8 @@
 type Alternative {
   description: String!
   id: ID!
-  idCategory: Int!
-  idQuest: Int!
+  idCategory: Int
+  idQuest: Int
   level: Int!
 }
 
@@ -25,9 +25,9 @@ type ContextType {
 type Hardware {
   capacity: Float!
   id: ID!
+  idType: Float
   model: String!
   price: Float!
-  type: Type!
 }
 
 type MergeCategory {
@@ -110,7 +110,7 @@ type Query {
 type Quest {
   description: String!
   id: ID!
-  idCategory: Int!
+  idCategory: Int
 }
 
 type Type {

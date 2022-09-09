@@ -14,9 +14,9 @@ export class Alternative{
   @Max(5)
   level: number;
 
-  @Field(type => Int)
+  @Field(type => Int, {nullable: true})
   idCategory: number;
 
-  @Field(type => Int)
+  @Field(type => Int, {nullable: true})
   idQuest: number;
 }

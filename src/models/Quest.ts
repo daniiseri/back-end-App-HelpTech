@@ -8,6 +8,6 @@ export class Quest{
   @Field(type => String)
   description: string;
 
-  @Field(type => Int)
+  @Field(type => Int, {nullable: true})
   idCategory: number;
 }
