@@ -22,7 +22,7 @@ export class AlternativeResolver{
   async createAlternative(
     @Arg("newAlternativeData") newAlternativeData: NewAlternativeInput,
     @Arg("idCategory") idCategory: number,
-    @Arg("idQuests") idQuest: number
+    @Arg("idQuest") idQuest: number
   ){
     const newAlternative = await this.alternativeServices.create({newAlternativeData, idCategory, idQuest});
     return newAlternative;

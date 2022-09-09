@@ -37,7 +37,7 @@ type MergeCategory {
 }
 
 type Mutation {
-  createAlternative(idCategory: Float!, idQuests: Float!, newAlternativeData: NewAlternativeInput!): [Alternative!]!
+  createAlternative(idCategory: Float!, idQuest: Float!, newAlternativeData: NewAlternativeInput!): [Alternative!]!
   createCategory(newCategoryInput: NewCategoryInput!): [Category!]!
   createHardware(newHardwareInput: NewHardwareInput!): Hardware!
   createMergeCategory: MergeCategory!
