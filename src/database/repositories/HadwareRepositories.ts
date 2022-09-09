@@ -25,10 +25,10 @@ export class HardwareRepositories{
     return hardware;
   }
 
-  async updateHardware({type, ...rest}: Hardware){
+  async updateHardware({idType, ...rest}: Hardware){
     const conn = await connectToMySql();
     const query = 'UPDATE hardware SET model=?, capacity=?, price=?, idType=? WHERE id=?';
-    await conn.execute(query, [rest.model, rest.capacity, rest.price, type.id, rest.id]);
+    await conn.execute(query, [rest.model, rest.capacity, rest.price, idType, rest.id]);
     const hardware = await this.findHardwareById(rest.id);
     return hardware;
   }

@@ -23,6 +23,6 @@ export class Hardware{
   @Field()
   price: number;
 
-  @Field({nullable: true})
+  @Field(type => Int, {nullable: true})
   idType: number;
 }

@@ -30,7 +30,7 @@ scalar DateTime
 type Hardware {
   capacity: Float!
   id: ID!
-  idType: Float
+  idType: Int
   model: String!
   price: Float!
 }

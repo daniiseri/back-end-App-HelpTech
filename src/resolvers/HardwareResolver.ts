@@ -55,13 +55,8 @@ export class HardwareResolver{
 
   @Query(() => [Hardware])
   async hardwares(){
-    const hardwares = await this.hardwareServices.getHardwares();
-    const results = hardwares[0].map(async (res:any) => {
-    const {id, model, capacity, price} = res;
-    const type = await this.type(res.idType);
-    return {id, model, capacity, price, type};
-    })
-    return results;
+    const [hardwares] = await this.hardwareServices.getHardwares();
+    return hardwares;
   } 
 
   @Authorized('admin')
@@ -71,8 +66,8 @@ export class HardwareResolver{
   ){
     const hardware = await this.hardwareServices.createHardware(newHadwareInput);
     const type = await this.hardwareServices.getTypeById(hardware[0].idType);
-    const {id, model, capacity, price} = hardware[0];
-    return {id, model, capacity, price, type: type[0]};
+    const {id, model, capacity, price, idType} = hardware[0];
+    return {id, model, capacity, price, idType};
   }
 
   @Authorized('admin')
@@ -84,9 +79,8 @@ export class HardwareResolver{
     @Arg("price") price: number,
     @Arg("idType") idType: number
   ){
-    await this.hardwareServices.updateHardware({id, model, capacity, price, type:{id:idType}});
-    const type = await this.hardwareServices.getTypeById(idType);
-    return {id, model, capacity, price, type: type[0]};
+    await this.hardwareServices.updateHardware({id, model, capacity, price, idType});
+    return {id, model, capacity, price, idType};
   }
 
   @Authorized('admin')
