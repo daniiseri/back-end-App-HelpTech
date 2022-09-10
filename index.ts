@@ -19,9 +19,10 @@ async function main(){
     schema,
   })
 
-  const { url } = await server.listen();
+  const URL = process.env.PORT || 4000;
+  await server.listen(URL);
 
-  console.log(`Server running on ${url}`);
+  console.log(`Server running on http://localhost:${URL}`);
 }
 
 main();
