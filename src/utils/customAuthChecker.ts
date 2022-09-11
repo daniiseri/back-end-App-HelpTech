@@ -1,8 +1,8 @@
 import { AuthChecker, ResolverData } from "type-graphql";
-import { ContextType } from "../models/Login";
+import { Credentials } from "../models/Login";
 
-export const customAuthChecker:AuthChecker<ContextType> = (
-    { root, args, context, info }: ResolverData<ContextType>,
+export const customAuthChecker:AuthChecker<Credentials> = (
+    { root, args, context, info }: ResolverData<Credentials>,
     roles: string[],
   ) => {
   
