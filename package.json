@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "tsnd -r dotenv/config src/index.ts",
+    "web": "npm start",
+    "start": "ts-node -r dotenv/config src/index.ts",
     "dev": "tsnd --respawn -r dotenv/config --transpile-only src/index.ts"
   },
   "keywords": [],
