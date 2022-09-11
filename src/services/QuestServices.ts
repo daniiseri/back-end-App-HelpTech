@@ -10,23 +10,18 @@ export class QuestServices{
   }
 
   async getAll(){
-    const quests = await this.questRepositories.findAll();
-
-    return quests;
+    return this.questRepositories.findAll();
   }
 
   async create(data: any){
-    const newQuest = await this.questRepositories.create(data);
-    return newQuest;
+    return this.questRepositories.create(data);
   }
 
   async update(data: Quest){
-    const quest = await this.questRepositories.update(data);
-    return quest;
+    return this.questRepositories.update(data);
   }
 
   async delete(code: number){
-    const result = await this.questRepositories.delete(code);
-    return result;
+    return this.questRepositories.delete(code);
   }
 }

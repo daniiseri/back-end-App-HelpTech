@@ -2,6 +2,7 @@ import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewHardwareInput } from '../input/NewHardwareInput';
 import { NewTypeInput } from "../input/NewTypeInput";
 import { Hardware, Type } from "../models/Hardware";
+import { ResultSetHeader } from "../models/ResultSetHeader";
 import { HardwareServices } from "../services/HadwareServices";
 
 @Resolver()
@@ -15,32 +16,32 @@ export class HardwareResolver{
   @Query(() => [Type])
   async types(){
     const types = await this.hardwareServices.getTypes();
-    return types[0];
+    return types;
   }
 
   @Query(() => [Type])
   async type(code: number){
     const type = await this.hardwareServices.getTypeById(code);
-    return type[0];
+    return type;
   }
 
   @Authorized('admin')
-  @Mutation(() => Type)
+  @Mutation(() => ResultSetHeader)
   async createType(
     @Arg("newTypeInput") newTypeInput: NewTypeInput
   ){
-    const type = await this.hardwareServices.createType(newTypeInput);
-    return type[0];
+    const result = await this.hardwareServices.createType(newTypeInput);
+    return result;
   }
 
   @Authorized('admin')
-  @Mutation(() => Type)
+  @Mutation(() => ResultSetHeader)
   async updateType(
     @Arg("id") id: number,
     @Arg("description") description: string
   ){
-    const type = await this.hardwareServices.updateType({id, description});
-    return type[0];
+    const result = await this.hardwareServices.updateType({id, description});
+    return result;
   }
 
   @Authorized('admin')
@@ -48,30 +49,27 @@ export class HardwareResolver{
   async deleteType(
     @Arg("id") id: number
   ){
-    const [result] = await this.hardwareServices.deleteType(id);
-    const {affectedRows} = result;
-    return affectedRows > 0;
+    const result = await this.hardwareServices.deleteType(id);    
+    return result ? true : false;
   }
 
   @Query(() => [Hardware])
   async hardwares(){
-    const [hardwares] = await this.hardwareServices.getHardwares();
+    const hardwares = await this.hardwareServices.getHardwares();
     return hardwares;
   } 
 
   @Authorized('admin')
-  @Mutation(() => Hardware)
+  @Mutation(() => ResultSetHeader)
   async createHardware(
     @Arg("newHardwareInput") newHadwareInput: NewHardwareInput
   ){
-    const hardware = await this.hardwareServices.createHardware(newHadwareInput);
-    const type = await this.hardwareServices.getTypeById(hardware[0].idType);
-    const {id, model, capacity, price, idType} = hardware[0];
-    return {id, model, capacity, price, idType};
+    const result = await this.hardwareServices.createHardware(newHadwareInput);
+    return result;
   }
 
   @Authorized('admin')
-  @Mutation(() => Hardware)
+  @Mutation(() => ResultSetHeader)
   async updateHardware(
     @Arg("id") id: number,
     @Arg("model") model: string,
@@ -79,8 +77,8 @@ export class HardwareResolver{
     @Arg("price") price: number,
     @Arg("idType") idType: number
   ){
-    await this.hardwareServices.updateHardware({id, model, capacity, price, idType});
-    return {id, model, capacity, price, idType};
+    const result = await this.hardwareServices.updateHardware({id, model, capacity, price, idType});
+    return result;
   }
 
   @Authorized('admin')
@@ -88,8 +86,7 @@ export class HardwareResolver{
   async deleteHardware(
     @Arg("id") id: number
   ){
-    const [result] = await this.hardwareServices.deleteHardware(id);
-    const {affectedRows} = result;
-    return affectedRows > 0;
+    const result = await this.hardwareServices.deleteHardware(id);
+    return result ? true : false;
   }
 }

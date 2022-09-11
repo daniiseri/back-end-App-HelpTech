@@ -14,8 +14,8 @@ export class UserRepositories{
   async findUser(email: string){
     const conn = await connectToMySql();
     const query = 'SELECT * FROM user WHERE email=?';
-    const user = await conn.execute(query, [email]);
-    return user[0];
+    const [user] = await conn.execute(query, email);
+    return user;
   }
 
   async findById(code: number){

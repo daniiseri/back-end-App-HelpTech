@@ -2,6 +2,7 @@ import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Category } from "../models/Category";
 import { CategoryServices } from "../services/CategoryServices";
 import { NewCategoryInput } from "../input/NewCategoryInput";
+import { ResultSetHeader } from "../models/ResultSetHeader";
 
 @Resolver()
 export class CategoryResolver{
@@ -14,20 +15,20 @@ export class CategoryResolver{
   @Query(() => [Category])
   async categories(){
     const categories = await this.categoryServices.getAll();
-    return categories[0];
+    return categories;
   }
 
   @Authorized('admin')
-  @Mutation(() => [Category])
+  @Mutation(() => ResultSetHeader)
   async createCategory(
     @Arg("newCategoryInput") newCategoryInput: NewCategoryInput
   ){
-    const newCategory = await this.categoryServices.create( newCategoryInput );
-    return newCategory;
+    const result = await this.categoryServices.create( newCategoryInput );
+    return result;
   }
 
   @Authorized('admin')
-  @Mutation(() => [Category])
+  @Mutation(() => ResultSetHeader)
   async updateCategory(
     @Arg("id") id: number,
     @Arg("description") description: string
@@ -41,8 +42,7 @@ export class CategoryResolver{
   async deleteCategory(
     @Arg("id") id: number
   ){
-    const [result] = await this.categoryServices.delete(id);
-    const {affectedRows} = result
-    return affectedRows > 0;
+    const result = await this.categoryServices.delete(id);
+    return result ? true : false;
   }
 }

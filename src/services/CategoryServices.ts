@@ -1,5 +1,4 @@
 import { CategoryRepositories } from '../database/repositories/CategoryRepositories';
-import { NewCategoryInput } from '../input/NewCategoryInput';
 import { Category } from '../models/Category';
 
 export class CategoryServices{
@@ -10,24 +9,18 @@ export class CategoryServices{
   }
 
   async getAll(){
-    const categories = await this.categoryRepositories.findAll();
-
-    return categories;
+    return this.categoryRepositories.findAll();
   }
 
   async create(data: any){
-    const newCategory = await this.categoryRepositories.create(data);
-
-    return newCategory;
+    return this.categoryRepositories.create(data);
   }
 
   async update(data: Category){
-    const category = await this.categoryRepositories.update(data);
-    return category;
+    return this.categoryRepositories.update(data);
   }
 
   async delete(code: number){
-    const result = await this.categoryRepositories.delete(code);
-    return result;
+    return this.categoryRepositories.delete(code);
   }
 }

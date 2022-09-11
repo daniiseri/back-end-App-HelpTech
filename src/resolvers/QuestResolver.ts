@@ -1,6 +1,7 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewQuestInput } from "../input/NewQuestInput";
 import { Quest } from "../models/Quest";
+import { ResultSetHeader } from "../models/ResultSetHeader";
 import { QuestServices } from "../services/QuestServices";
 
 @Resolver()
@@ -14,28 +15,28 @@ export class QuestResolver{
   @Query(() => [Quest])
   async quests(){
     const quests = await this.questService.getAll();
-    return quests[0];
+    return quests;
   }
 
   @Authorized('admin')
-  @Mutation(() => [Quest])
+  @Mutation(() => ResultSetHeader)
   async createQuest(
     @Arg("newQuestData") newQuestData: NewQuestInput,
     @Arg("idCategory") idCategory: number
   ){
-    const newQuest = await this.questService.create({newQuestData, idCategory});
-    return newQuest;
+    const result = await this.questService.create({newQuestData, idCategory});
+    return result;
   }
 
   @Authorized('admin')
-  @Mutation(() => [Quest])
+  @Mutation(() => ResultSetHeader)
   async updateQuest(
     @Arg("id") id: number,
     @Arg("description") description: string,
     @Arg("idCategory") idCategory: number
   ){
-    const quest = await this.questService.update({id, description, idCategory});
-    return quest;
+    const result = await this.questService.update({id, description, idCategory});
+    return result;
   }
 
   
@@ -44,8 +45,7 @@ export class QuestResolver{
   async deleteQuest(
     @Arg("id") id: number
   ){
-    const [result] = await this.questService.delete(id);
-    const {affectedRows} = result;
-    return affectedRows > 0;
+    const result = await this.questService.delete(id);
+    return result ? true : false;
   }
 }
