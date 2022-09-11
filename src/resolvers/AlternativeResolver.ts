@@ -1,6 +1,8 @@
+import { is } from "bluebird";
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewAlternativeInput } from "../input/NewAlternativeInput";
 import { Alternative } from "../models/Alternative";
+import { ResultSetHeader } from "../models/ResultSetHeader";
 import { AlternativeServices } from "../services/AlternativeServices";
 
 @Resolver()
@@ -18,19 +20,19 @@ export class AlternativeResolver{
   }
 
   @Authorized('admin')
-  @Mutation(() => [Alternative])
+  @Mutation(() => ResultSetHeader)
   async createAlternative(
     @Arg("newAlternativeData") newAlternativeData: NewAlternativeInput,
     @Arg("idCategory") idCategory: number,
     @Arg("idQuest") idQuest: number
   ){
-    const newAlternative = await this.alternativeServices.create({newAlternativeData, idCategory, idQuest});
-    return newAlternative;
+    const result = await this.alternativeServices.create({newAlternativeData, idCategory, idQuest});
+    return result;
   }
 
   
   @Authorized('admin')
-  @Mutation(() => [Alternative])
+  @Mutation(() => ResultSetHeader)
   async updateAlternative(
     @Arg("id") id: number,
     @Arg("description") description: string,
@@ -38,8 +40,8 @@ export class AlternativeResolver{
     @Arg("idCategory") idCategory: number,
     @Arg("idQuests") idQuest: number
   ){
-    const alternative = await this.alternativeServices.update({id, description, level, idCategory, idQuest});
-    return alternative;
+    const result = await this.alternativeServices.update({id, description, level, idCategory, idQuest});
+    return result;
   }
 
    

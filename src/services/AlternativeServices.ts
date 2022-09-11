@@ -15,13 +15,11 @@ export class AlternativeServices{
   }
 
   async create(data: any){
-    const newAlternative = await this.alternativeRepositories.create(data);
-    return newAlternative;
+    return this.alternativeRepositories.create(data);
   }
 
   async update(data: Alternative){
-    const alternative = await this.alternativeRepositories.update(data);
-    return alternative;
+    return this.alternativeRepositories.update(data);
   }
 
   async delete(code: number){
