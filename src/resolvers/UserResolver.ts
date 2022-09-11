@@ -2,6 +2,7 @@ import { Arg, Query, Resolver, Mutation } from 'type-graphql';
 import { UserServices } from '../services/UserServices';
 import { User } from '../models/User';
 import { NewUserInput } from '../input/NewUserInput';
+import { ResultSetHeader } from '../models/ResultSetHeader';
 
 @Resolver()
 export class UserResolver{
@@ -14,10 +15,10 @@ export class UserResolver{
   @Query(() => [User])
   async users(){
     const users = await this.userServices.getAll();
-    return users[0];
+    return users;
   }
 
-  @Mutation(() => [User])
+  @Mutation(() => ResultSetHeader)
   async createUser(
     @Arg("newUserInput") newUserInput: NewUserInput
   ){
@@ -25,7 +26,7 @@ export class UserResolver{
     return user;
   }
 
-  @Mutation(() => [User])
+  @Mutation(() => ResultSetHeader)
   async updateUser(
     @Arg("id") id: number,
     @Arg("name") name: string,
@@ -40,8 +41,7 @@ export class UserResolver{
   async deleteUser(
     @Arg("id") code: number
   ){
-    const [result]= await this.userServices.delete(code);
-    const {affectedRows} = await result;
-    return affectedRows > 0;
+    const result = await this.userServices.delete(code);
+    return result ? true : false;
   }
 }

@@ -1,5 +1,6 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewUserResponseInput } from "../input/NewUserResponseInput";
+import { ResultSetHeader } from "../models/ResultSetHeader";
 import { UserResponse } from "../models/UserResponse";
 import { UserResponseServices } from "../services/UserResonseServices";
 
@@ -15,18 +16,18 @@ export class UserResponseResolver{
   @Query(() => [UserResponse])
   async userReponses(){
     const userResponses = await this.userResponseServices.getAll();
-    return userResponses[0];
+    return userResponses;
   }
 
   @Authorized()
   @Query(()=>[UserResponse])
   async userResponseByUser(@Arg("idUser") code:number){
     const userReponses = await this.userResponseServices.getByUser(code);
-    return userReponses[0];
+    return userReponses;
   }
 
   @Authorized()
-  @Mutation(() => [UserResponse])
+  @Mutation(() => ResultSetHeader)
   async createUserResponse(
     @Arg("newUserResponseInput") newUserResponseInput: NewUserResponseInput
   ){
@@ -35,7 +36,7 @@ export class UserResponseResolver{
   }
 
   @Authorized()
-  @Mutation(() => [UserResponse])
+  @Mutation(() => ResultSetHeader)
   async udateUserResponse(
     @Arg("id") id: number,
     @Arg("idAlternative") idAlternative: number
@@ -50,7 +51,6 @@ export class UserResponseResolver{
     @Arg("id") code: number
   ){
     const result = await this.userResponseServices.delete(code);
-    const {affectedRows} = result;
-    return affectedRows > 0;
+    return result ? true : false;
   }
 }

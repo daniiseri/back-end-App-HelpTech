@@ -9,27 +9,22 @@ export class UserServices{
   }
 
   async getAll(){
-    const users = await this.userRepositories.findAll();
-    return users;
+    return this.userRepositories.findAll();
   }
 
   async getById(code: number){
-    const [user] = await this.userRepositories.findById(code);
-    return user;
+    return this.userRepositories.findById(code);
   }
 
   async create(data: NewUserInput){
-    const newUser = await this.userRepositories.create(data);
-    return newUser;
+    return this.userRepositories.create(data);
   }
 
   async update(data: User){
-    const user = await this.userRepositories.update(data);
-    return user;
+    return this.userRepositories.update(data);
   }
 
   async delete(code: number){
-    const result = await this.userRepositories.delete(code);
-    return result;
+    return this.userRepositories.delete(code);
   }
 }
