@@ -48,8 +48,7 @@ export class AlternativeResolver{
   async deleteAlternative(
     @Arg("id") id: number
   ){
-    const [result] = await this.alternativeServices.delete(id);
-    const {affectedRows} = result;
-    return affectedRows > 0;
+    const result = await this.alternativeServices.delete(id);
+    return result ? true : false;
   }
 }
