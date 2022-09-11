@@ -17,7 +17,7 @@ export class SessionResolver{
     @Arg("email") email: string,
     @Arg("password") password: string
   ){
-    const userFound = await this.sessionServices.login(email);
+    const [userFound] = await this.sessionServices.login(email);
 
     if(!userFound){
       return 'user not found';
