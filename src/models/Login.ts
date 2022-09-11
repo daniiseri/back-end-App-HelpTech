@@ -2,13 +2,10 @@ import { Field, ObjectType } from "type-graphql";
 import { User } from "./User";
 
 @ObjectType()
-export class ContextType{
-  @Field({nullable: true})
+export class Credentials{
+  @Field()
   user: User;
 
-  @Field({nullable: true})
+  @Field()
   token: string;
-
-  @Field(type => Boolean)
-  error: boolean;
 }
