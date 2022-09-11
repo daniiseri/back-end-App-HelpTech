@@ -1,8 +1,8 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
 import { SessionServices } from "../services/SessionServices";
 import { Credentials } from '../models/Login';
-import { checkPassword } from "../utils/bcrypt";
 import { generateToken } from "../utils/generateToken";
+import { compare } from "bcryptjs";
 
 @Resolver()
 export class SessionResolver{
@@ -17,9 +17,15 @@ export class SessionResolver{
     @Arg("email") email: string,
     @Arg("password") password: string
   ){
-    const [userFound] = await Object.values(this.sessionServices.login(email));
+    const [userFound] = await Object.values((this.sessionServices.login(email)));
+
+    if(!userFound)
+      return;
+
+    if(!compare(password, userFound.password))
+      return;
+
     const token = generateToken({id:userFound.id});
-    userFound.password = undefined;
     return {user:userFound, token}
   }
 }
