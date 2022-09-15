@@ -16,6 +16,13 @@ export class AlternativeRepositories{
     return alternative;
   }
 
+  async findByQuest(code: number){
+    const conn = await connectToMySql();
+    const query = 'SELECT * FROM alternative WHERE idQuest = ?';
+    const [alternative] = await conn.execute(query, [code]);
+    return alternative;
+  }
+
   async create(data: any){
     const conn = await connectToMySql();
     const query = 'INSERT INTO alternative (description, level, idCategory, idQuest) VALUES (?, ?, ?, ?)';

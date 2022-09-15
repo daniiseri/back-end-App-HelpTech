@@ -19,6 +19,14 @@ export class AlternativeResolver{
     return alternatives[0];
   }
 
+  @Query(() => [Alternative])
+  async alternativesByQuest(
+    @Arg("questId") questId: number
+  ){
+    const alternatives = await this.alternativeServices.getByQuest(questId);
+    return alternatives;
+  }
+
   @Authorized('admin')
   @Mutation(() => ResultSetHeader)
   async createAlternative(

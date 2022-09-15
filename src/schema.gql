@@ -103,6 +103,7 @@ input NewUserResponseInput {
 
 type Query {
   alternatives: [Alternative!]!
+  alternativesByQuest(questId: Float!): [Alternative!]!
   categories: [Category!]!
   hardwares: [Hardware!]!
   mergeCategories: [MergeCategory!]!

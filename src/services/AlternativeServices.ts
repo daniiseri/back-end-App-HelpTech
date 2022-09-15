@@ -9,9 +9,11 @@ export class AlternativeServices{
   }
 
   async getAll(){
-    const alternatives = await this.alternativeRepositories.findAll();
+    return this.alternativeRepositories.findAll();
+  }
 
-    return alternatives;
+  async getByQuest(code: number){
+    return this.alternativeRepositories.findByQuest(code);
   }
 
   async create(data: any){
