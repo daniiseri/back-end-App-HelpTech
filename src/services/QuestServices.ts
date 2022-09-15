@@ -13,6 +13,10 @@ export class QuestServices{
     return this.questRepositories.findAll();
   }
 
+  async getByCategory(code: number){
+    return this.questRepositories.findByCategory(code);
+  }
+
   async create(data: any){
     return this.questRepositories.create(data);
   }

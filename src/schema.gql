@@ -108,6 +108,7 @@ type Query {
   hardwares: [Hardware!]!
   mergeCategories: [MergeCategory!]!
   quests: [Quest!]!
+  questsByCategory(categoryId: Float!): [Quest!]!
   type: [Type!]!
   types: [Type!]!
   userReponses: [UserResponse!]!

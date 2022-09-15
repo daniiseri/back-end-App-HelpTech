@@ -17,6 +17,13 @@ export class QuestRepositories{
     return quest;
   }
 
+  async findByCategory(code: number){
+    const conn = await connectToMySql();
+    const query = 'SELECT * FROM quest WHERE idCategory = ?';
+    const [quest] = await conn.execute(query, [code]);
+    return quest;
+  }
+
   async create(data: any){
     const conn = await connectToMySql();
     const query = 'INSERT INTO quest (description, idCategory) VALUES (?, ?)';

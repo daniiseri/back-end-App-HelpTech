@@ -18,6 +18,14 @@ export class QuestResolver{
     return quests;
   }
 
+  @Query(() => [Quest])
+  async questsByCategory(
+    @Arg("categoryId") categoryId: number
+  ){
+    const quests = await this.questService.getByCategory(categoryId);
+    return quests;
+  }
+
   @Authorized('admin')
   @Mutation(() => ResultSetHeader)
   async createQuest(
