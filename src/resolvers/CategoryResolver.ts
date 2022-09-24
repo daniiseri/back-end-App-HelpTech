@@ -18,7 +18,7 @@ export class CategoryResolver{
     return categories;
   }
 
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => ResultSetHeader)
   async createCategory(
     @Arg("newCategoryInput") newCategoryInput: NewCategoryInput
@@ -27,7 +27,7 @@ export class CategoryResolver{
     return result;
   }
 
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => ResultSetHeader)
   async updateCategory(
     @Arg("id") id: number,
@@ -37,7 +37,7 @@ export class CategoryResolver{
     return category;
   }
 
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => Boolean)
   async deleteCategory(
     @Arg("id") id: number

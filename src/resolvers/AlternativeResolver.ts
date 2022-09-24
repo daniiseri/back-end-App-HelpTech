@@ -27,7 +27,7 @@ export class AlternativeResolver{
     return alternatives;
   }
 
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => ResultSetHeader)
   async createAlternative(
     @Arg("newAlternativeData") newAlternativeData: NewAlternativeInput,
@@ -39,7 +39,7 @@ export class AlternativeResolver{
   }
 
   
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => ResultSetHeader)
   async updateAlternative(
     @Arg("id") id: number,
@@ -53,7 +53,7 @@ export class AlternativeResolver{
   }
 
    
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => Boolean)
   async deleteAlternative(
     @Arg("id") id: number

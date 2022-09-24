@@ -26,7 +26,7 @@ export class QuestResolver{
     return quests;
   }
 
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => ResultSetHeader)
   async createQuest(
     @Arg("newQuestData") newQuestData: NewQuestInput,
@@ -36,7 +36,7 @@ export class QuestResolver{
     return result;
   }
 
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => ResultSetHeader)
   async updateQuest(
     @Arg("id") id: number,
@@ -48,7 +48,7 @@ export class QuestResolver{
   }
 
   
-  @Authorized('admin')
+  @Authorized('Admin')
   @Mutation(() => Boolean)
   async deleteQuest(
     @Arg("id") id: number

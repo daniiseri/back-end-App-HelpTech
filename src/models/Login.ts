@@ -8,4 +8,7 @@ export class Credentials{
 
   @Field()
   token: string;
+
+  @Field(type => [String], {nullable: true})
+  roles?: string[];
 }

@@ -17,6 +17,7 @@ type Category {
 }
 
 type Credentials {
+  roles: [String!]
   token: String!
   user: User!
 }
