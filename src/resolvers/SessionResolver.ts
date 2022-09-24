@@ -2,14 +2,23 @@ import { Arg, Mutation, Resolver } from "type-graphql";
 import { SessionServices } from "../services/SessionServices";
 import { Credentials } from '../models/Login';
 import { generateToken } from "../utils/generateToken";
-import { compare } from "bcryptjs";
+import { User } from "../models/User";
+import { checkPassword } from "../utils/bcrypt";
+import { UserRoleServices } from "../services/UserRoleServices";
+import { RoleServices } from "../services/RoleServices";
+import { Role } from "../models/Role";
+import { UserRole } from "../models/UserRole";
 
 @Resolver()
 export class SessionResolver{
   sessionServices: SessionServices;
+  userRoleServices: UserRoleServices;
+  roleServices: RoleServices;
 
   constructor(){
     this.sessionServices = new SessionServices();
+    this.userRoleServices = new UserRoleServices();
+    this.roleServices = new RoleServices();
   }
 
   @Mutation(() => Credentials)
@@ -17,15 +26,22 @@ export class SessionResolver{
     @Arg("email") email: string,
     @Arg("password") password: string
   ){
-    const [userFound] = await this.sessionServices.login(email);
+    const [userFound] = await this.sessionServices.login(email) as User[];
 
     if(!userFound)
-      return;
+      return new Error('user not found');
 
-    if(!compare(password, userFound.password))
-      return;
+    if(! await checkPassword(password, userFound.password))
+      return new Error('incorrect password');
+
+    const userRoles = await this.userRoleServices.getByUser(userFound.id) as UserRole[];
+
+    const roles = await userRoles.map(async({roleId}) =>  {
+      const [{description}] = await this.roleServices.getById(roleId) as Role[];
+      return description;
+    })
 
     const token = generateToken({id:userFound.id});
-    return {user:userFound, token}
+    return {user:userFound, roles, token}
   }
 }
