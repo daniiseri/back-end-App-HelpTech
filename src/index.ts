@@ -16,6 +16,11 @@ async function main(){
 
   const server = new ApolloServer({
     schema,
+    context: ({req}) => {
+      const [token, roles] = req.headers?.authorization?.split(',') || [];
+
+      return {token, roles:[roles]};
+    }
   })
 
   const URL = process.env.PORT || 4000;
