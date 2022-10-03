@@ -1,4 +1,3 @@
-import { is } from "bluebird";
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewAlternativeInput } from "../input/NewAlternativeInput";
 import { Alternative } from "../models/Alternative";
