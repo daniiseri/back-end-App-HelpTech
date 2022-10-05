@@ -1,13 +1,22 @@
-import { Pool } from 'pg';
+import { Client } from 'pg';
 
 
 const connectToPostgres = async()=>{
-  const pool = new Pool(
+  const client = new Client(
     {
-      connectionString: process.env.POSTGRES_URL
+      host: process.env.PGHOST,
+      database: process.env.PGDATABASE,
+      user: process.env.PGUSER,
+      port: Number(process.env.PGPORT),
+      password: process.env.PGPASSWORD,
     }
   );
-  return pool
+
+  await client.connect();
+
+  console.log('Database running!');
+  
+  return client
 }
 
 connectToPostgres()

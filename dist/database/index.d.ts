@@ -1,3 +1,3 @@
-import mysql from 'mysql2/promise';
-declare const connectToMySql: () => Promise<mysql.Connection>;
-export { connectToMySql };
+import { Client } from 'pg';
+declare const connectToPostgres: () => Promise<Client>;
+export default connectToPostgres;

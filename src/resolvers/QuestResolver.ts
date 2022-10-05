@@ -1,7 +1,6 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewQuestInput } from "../input/NewQuestInput";
 import { Quest } from "../models/Quest";
-import { ResultSetHeader } from "../models/ResultSetHeader";
 import { QuestServices } from "../services/QuestServices";
 
 @Resolver()
@@ -27,7 +26,7 @@ export class QuestResolver{
   }
 
   @Authorized('Admin')
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async createQuest(
     @Arg("newQuestData") newQuestData: NewQuestInput,
     @Arg("idCategory") idCategory: number
@@ -37,7 +36,7 @@ export class QuestResolver{
   }
 
   @Authorized('Admin')
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async updateQuest(
     @Arg("id") id: number,
     @Arg("description") description: string,

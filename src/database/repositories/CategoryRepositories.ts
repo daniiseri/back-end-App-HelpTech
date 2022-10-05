@@ -1,39 +1,39 @@
 import { Category } from "../../models/Category";
-import { connectToMySql } from "../index";
+import connectToPostgres from "../index";
 
 export class CategoryRepositories{
   async findAll(){
-    const conn = await connectToMySql();
+    const conn = await connectToPostgres();
     const query = 'SELECT * FROM category';
-    const [categories] = await conn.execute(query);
-    return categories;
+    const {rows} = await conn.query(query);
+    return rows;
   }
 
   async findById(code: any){
-    const conn = await connectToMySql();
+    const conn = await connectToPostgres();
     const query = 'SELECT * FROM category WHERE id = ?';
-    const [category] = await conn.execute(query, [code]);
-    return category;
+    const {rows} = await conn.query(query, [code]);
+    return rows;
   }
 
   async create(data: any){
-    const conn = await connectToMySql();
+    const conn = await connectToPostgres();
     const query = 'INSERT INTO category (description) VALUES (?)';
-    const [result]  = await conn.execute(query, [data.description]);
-    return result;
+    const {rowCount}  = await conn.query(query, [data.description]);
+    return rowCount;
   }
 
   async update(data: Category){
-    const conn = await connectToMySql();
-    const query = 'UPDATE category SET description=? WHERE id=?';
-    const [result] = await conn.execute(query, [data.description, data.id]);
-    return result;
+    const conn = await connectToPostgres();
+    const query = 'UPDATE category SET description=$1 WHERE id=$2';
+    const {rowCount} = await conn.query(query, [data.description, data.id]);
+    return rowCount;
   }
 
   async delete(code: number){
-    const conn = await connectToMySql();
-    const query = 'DELETE FROM category WHERE id=?';
-    const [result] = await conn.execute(query, [code]);
-    return result;
+    const conn = await connectToPostgres();
+    const query = 'DELETE FROM category WHERE id=$1';
+    const {rowCount} = await conn.query(query, [code]);
+    return rowCount;
   }
 }

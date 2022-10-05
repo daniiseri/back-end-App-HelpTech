@@ -4,6 +4,7 @@
   "description": "",
   "main": "dist/index.js",
   "scripts": {
+    "build": "tsc",
     "start": "node -r dotenv/config dist/index.js",
     "dev": "tsnd --respawn -r dotenv/config --transpile-only src/index.ts"
   },

@@ -2,7 +2,6 @@ import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { Category } from "../models/Category";
 import { CategoryServices } from "../services/CategoryServices";
 import { NewCategoryInput } from "../input/NewCategoryInput";
-import { ResultSetHeader } from "../models/ResultSetHeader";
 
 @Resolver()
 export class CategoryResolver{
@@ -19,7 +18,7 @@ export class CategoryResolver{
   }
 
   @Authorized('Admin')
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async createCategory(
     @Arg("newCategoryInput") newCategoryInput: NewCategoryInput
   ){
@@ -28,7 +27,7 @@ export class CategoryResolver{
   }
 
   @Authorized('Admin')
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async updateCategory(
     @Arg("id") id: number,
     @Arg("description") description: string

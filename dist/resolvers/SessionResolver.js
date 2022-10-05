@@ -33,8 +33,8 @@ let SessionResolver = class SessionResolver {
         if (!await (0, bcrypt_1.checkPassword)(password, userFound.password))
             return new Error('incorrect password');
         const userRoles = await this.userRoleServices.getByUser(userFound.id);
-        const promiseRoles = await userRoles.map(async ({ roleId }) => {
-            const [{ description }] = await this.roleServices.getById(roleId);
+        const promiseRoles = await userRoles.map(async ({ roleid }) => {
+            const [{ description }] = await this.roleServices.getById(roleid);
             return description;
         });
         const roles = await Promise.all(promiseRoles);

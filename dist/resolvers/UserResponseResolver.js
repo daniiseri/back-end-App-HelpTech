@@ -15,7 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.UserResponseResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const NewUserResponseInput_1 = require("../input/NewUserResponseInput");
-const ResultSetHeader_1 = require("../models/ResultSetHeader");
 const UserResponse_1 = require("../models/UserResponse");
 const UserResonseServices_1 = require("../services/UserResonseServices");
 let UserResponseResolver = class UserResponseResolver {
@@ -60,7 +59,7 @@ __decorate([
 ], UserResponseResolver.prototype, "userResponseByUser", null);
 __decorate([
     (0, type_graphql_1.Authorized)(),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("newUserResponseInput")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [NewUserResponseInput_1.NewUserResponseInput]),
@@ -68,7 +67,7 @@ __decorate([
 ], UserResponseResolver.prototype, "createUserResponse", null);
 __decorate([
     (0, type_graphql_1.Authorized)(),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("id")),
     __param(1, (0, type_graphql_1.Arg)("idAlternative")),
     __metadata("design:type", Function),

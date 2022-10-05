@@ -16,7 +16,6 @@ exports.QuestResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const NewQuestInput_1 = require("../input/NewQuestInput");
 const Quest_1 = require("../models/Quest");
-const ResultSetHeader_1 = require("../models/ResultSetHeader");
 const QuestServices_1 = require("../services/QuestServices");
 let QuestResolver = class QuestResolver {
     constructor() {
@@ -58,7 +57,7 @@ __decorate([
 ], QuestResolver.prototype, "questsByCategory", null);
 __decorate([
     (0, type_graphql_1.Authorized)('Admin'),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("newQuestData")),
     __param(1, (0, type_graphql_1.Arg)("idCategory")),
     __metadata("design:type", Function),
@@ -67,7 +66,7 @@ __decorate([
 ], QuestResolver.prototype, "createQuest", null);
 __decorate([
     (0, type_graphql_1.Authorized)('Admin'),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("id")),
     __param(1, (0, type_graphql_1.Arg)("description")),
     __param(2, (0, type_graphql_1.Arg)("idCategory")),

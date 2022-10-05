@@ -2,7 +2,6 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.SessionServices = void 0;
 const UserRepositories_1 = require("../database/repositories/UserRepositories");
-const authConfig = require('../config/auth');
 class SessionServices {
     constructor() {
         this.userRepositories = new UserRepositories_1.UserRepositories();

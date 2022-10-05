@@ -17,7 +17,6 @@ const type_graphql_1 = require("type-graphql");
 const Category_1 = require("../models/Category");
 const CategoryServices_1 = require("../services/CategoryServices");
 const NewCategoryInput_1 = require("../input/NewCategoryInput");
-const ResultSetHeader_1 = require("../models/ResultSetHeader");
 let CategoryResolver = class CategoryResolver {
     constructor() {
         this.categoryServices = new CategoryServices_1.CategoryServices();
@@ -47,7 +46,7 @@ __decorate([
 ], CategoryResolver.prototype, "categories", null);
 __decorate([
     (0, type_graphql_1.Authorized)('Admin'),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("newCategoryInput")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [NewCategoryInput_1.NewCategoryInput]),
@@ -55,7 +54,7 @@ __decorate([
 ], CategoryResolver.prototype, "createCategory", null);
 __decorate([
     (0, type_graphql_1.Authorized)('Admin'),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("id")),
     __param(1, (0, type_graphql_1.Arg)("description")),
     __metadata("design:type", Function),

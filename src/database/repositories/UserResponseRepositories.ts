@@ -1,47 +1,46 @@
 import { NewUserResponseInput } from '../../input/NewUserResponseInput';
-import { UserResponse } from '../../models/UserResponse';
-import { connectToMySql } from '../index';
+import connectToPostgres from '../index';
 
 export class UserResponseRepositories{
   async findAll(){
-    const conn = await connectToMySql();
+    const conn = await connectToPostgres();
     const query = 'SELECT * FROM user_response';
-    const [userReponses] = await conn.execute(query);
-    return userReponses;
+    const {rows} = await conn.query(query);
+    return rows;
   }
 
   async findById(code: number){
-    const conn = await connectToMySql();
-    const query = 'SELECT * FROM user_response WHERE id = ?';
-    const [userReponse] = await conn.execute(query, [code]);
-    return userReponse;
+    const conn = await connectToPostgres();
+    const query = 'SELECT * FROM user_response WHERE id = $1';
+    const {rows} = await conn.query(query, [code]);
+    return rows;
   }
 
   async findByUser(code:number){
-    const conn = await connectToMySql();
-    const query = 'SELECT * FROM user_response WHERE idUser = ?';
-    const [userReponse] = await conn.execute(query, [code]);
-    return userReponse;
+    const conn = await connectToPostgres();
+    const query = 'SELECT * FROM user_response WHERE idUser = $1';
+    const {rows} = await conn.query(query, [code]);
+    return rows;
   }
 
   async create(data: NewUserResponseInput){
-    const conn = await connectToMySql();
-    const query = 'INSERT INTO user_response (idAlternative, idUser) VALUES (?, ?)';
-    const [result] = await conn.execute(query, [data.idAlternative, data.idUser]);
-    return result;
+    const conn = await connectToPostgres();
+    const query = 'INSERT INTO user_response (idAlternative, idUser) VALUES ($1, $2)';
+    const {rowCount} = await conn.query(query, [data.idAlternative, data.idUser]);
+    return rowCount;
   }
 
   async update(data: any){
-    const conn = await connectToMySql();
-    const query = 'UPDATE user_response SET idAlternative=? WHERE id=?';
-    const [result]  = await conn.execute(query, [data.idAlternative, data.id]);
-    return result;
+    const conn = await connectToPostgres();
+    const query = 'UPDATE user_response SET idAlternative=$1 WHERE id=$2';
+    const {rowCount}  = await conn.query(query, [data.idAlternative, data.id]);
+    return rowCount;
   }
 
   async delete(code:number){
-    const conn = await connectToMySql();
-    const query = 'DELETE FROM user_response WHERE id=?';
-    const [result] = await conn.execute(query, [code]);
-    return result;
+    const conn = await connectToPostgres();
+    const query = 'DELETE FROM user_response WHERE id=$1';
+    const {rowCount} = await conn.query(query, [code]);
+    return rowCount;
   }
 }

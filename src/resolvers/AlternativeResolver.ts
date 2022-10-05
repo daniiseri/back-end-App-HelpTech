@@ -1,7 +1,6 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewAlternativeInput } from "../input/NewAlternativeInput";
 import { Alternative } from "../models/Alternative";
-import { ResultSetHeader } from "../models/ResultSetHeader";
 import { AlternativeServices } from "../services/AlternativeServices";
 
 @Resolver()
@@ -27,7 +26,7 @@ export class AlternativeResolver{
   }
 
   @Authorized('Admin')
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async createAlternative(
     @Arg("newAlternativeData") newAlternativeData: NewAlternativeInput,
     @Arg("idCategory") idCategory: number,
@@ -39,7 +38,7 @@ export class AlternativeResolver{
 
   
   @Authorized('Admin')
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async updateAlternative(
     @Arg("id") id: number,
     @Arg("description") description: string,

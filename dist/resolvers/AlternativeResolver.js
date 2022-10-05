@@ -16,7 +16,6 @@ exports.AlternativeResolver = void 0;
 const type_graphql_1 = require("type-graphql");
 const NewAlternativeInput_1 = require("../input/NewAlternativeInput");
 const Alternative_1 = require("../models/Alternative");
-const ResultSetHeader_1 = require("../models/ResultSetHeader");
 const AlternativeServices_1 = require("../services/AlternativeServices");
 let AlternativeResolver = class AlternativeResolver {
     constructor() {
@@ -58,7 +57,7 @@ __decorate([
 ], AlternativeResolver.prototype, "alternativesByQuest", null);
 __decorate([
     (0, type_graphql_1.Authorized)('Admin'),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("newAlternativeData")),
     __param(1, (0, type_graphql_1.Arg)("idCategory")),
     __param(2, (0, type_graphql_1.Arg)("idQuest")),
@@ -68,7 +67,7 @@ __decorate([
 ], AlternativeResolver.prototype, "createAlternative", null);
 __decorate([
     (0, type_graphql_1.Authorized)('Admin'),
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("id")),
     __param(1, (0, type_graphql_1.Arg)("description")),
     __param(2, (0, type_graphql_1.Arg)("level")),

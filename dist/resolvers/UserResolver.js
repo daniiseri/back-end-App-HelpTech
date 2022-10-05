@@ -17,21 +17,26 @@ const type_graphql_1 = require("type-graphql");
 const UserServices_1 = require("../services/UserServices");
 const User_1 = require("../models/User");
 const NewUserInput_1 = require("../input/NewUserInput");
-const ResultSetHeader_1 = require("../models/ResultSetHeader");
 let UserResolver = class UserResolver {
     constructor() {
         this.userServices = new UserServices_1.UserServices();
     }
     async users() {
         const users = await this.userServices.getAll();
+        if (!users.length)
+            return new Error('users not found');
         return users;
     }
     async createUser(newUserInput) {
         const user = await this.userServices.create(newUserInput);
+        if (!user)
+            return new Error('fail insert');
         return user;
     }
     async updateUser(id, name, email, password) {
         const user = await this.userServices.update({ id, name, email, password });
+        if (!user)
+            return new Error('fail update');
         return user;
     }
     async deleteUser(code) {
@@ -46,14 +51,14 @@ __decorate([
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "users", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("newUserInput")),
     __metadata("design:type", Function),
     __metadata("design:paramtypes", [NewUserInput_1.NewUserInput]),
     __metadata("design:returntype", Promise)
 ], UserResolver.prototype, "createUser", null);
 __decorate([
-    (0, type_graphql_1.Mutation)(() => ResultSetHeader_1.ResultSetHeader),
+    (0, type_graphql_1.Mutation)(() => Number),
     __param(0, (0, type_graphql_1.Arg)("id")),
     __param(1, (0, type_graphql_1.Arg)("name")),
     __param(2, (0, type_graphql_1.Arg)("email")),

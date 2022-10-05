@@ -1,21 +1,17 @@
 "use strict";
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.connectToMySql = void 0;
-const promise_1 = __importDefault(require("mysql2/promise"));
-const bluebird_1 = __importDefault(require("bluebird"));
-const connectToMySql = async () => {
-    const connection = await promise_1.default.createConnection({
-        host: 'localhost',
-        user: 'root',
-        database: 'help_tech',
-        password: process.env.DB_PASSWORD,
-        Promise: bluebird_1.default
+const pg_1 = require("pg");
+const connectToPostgres = async () => {
+    const client = new pg_1.Client({
+        host: process.env.PGHOST,
+        database: process.env.PGDATABASE,
+        user: process.env.PGUSER,
+        port: Number(process.env.PGPORT),
+        password: process.env.PGPASSWORD,
     });
-    console.log('Database running');
-    return connection;
+    await client.connect();
+    console.log('Database running!');
+    return client;
 };
-exports.connectToMySql = connectToMySql;
-connectToMySql();
+connectToPostgres();
+exports.default = connectToPostgres;

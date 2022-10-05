@@ -1,6 +1,5 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
 import { NewUserResponseInput } from "../input/NewUserResponseInput";
-import { ResultSetHeader } from "../models/ResultSetHeader";
 import { UserResponse } from "../models/UserResponse";
 import { UserResponseServices } from "../services/UserResonseServices";
 
@@ -27,7 +26,7 @@ export class UserResponseResolver{
   }
 
   @Authorized()
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async createUserResponse(
     @Arg("newUserResponseInput") newUserResponseInput: NewUserResponseInput
   ){
@@ -36,7 +35,7 @@ export class UserResponseResolver{
   }
 
   @Authorized()
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async udateUserResponse(
     @Arg("id") id: number,
     @Arg("idAlternative") idAlternative: number

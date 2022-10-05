@@ -24,7 +24,7 @@ __decorate([
 __decorate([
     (0, type_graphql_1.Field)(),
     __metadata("design:type", Number)
-], UserRole.prototype, "roleId", void 0);
+], UserRole.prototype, "roleid", void 0);
 UserRole = __decorate([
     (0, type_graphql_1.ObjectType)()
 ], UserRole);
