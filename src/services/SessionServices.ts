@@ -1,6 +1,4 @@
 import { UserRepositories } from '../database/repositories/UserRepositories';
-
-const authConfig = require('../config/auth');
  
 export class SessionServices{
   userRepositories: UserRepositories;

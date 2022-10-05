@@ -2,7 +2,6 @@ import { Arg, Query, Resolver, Mutation } from 'type-graphql';
 import { UserServices } from '../services/UserServices';
 import { User } from '../models/User';
 import { NewUserInput } from '../input/NewUserInput';
-import { ResultSetHeader } from '../models/ResultSetHeader';
 
 @Resolver()
 export class UserResolver{
@@ -15,18 +14,26 @@ export class UserResolver{
   @Query(() => [User])
   async users(){
     const users = await this.userServices.getAll();
+
+    if(!users.length)
+    return new Error('users not found');
+    
     return users;
   }
 
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async createUser(
     @Arg("newUserInput") newUserInput: NewUserInput
   ){
     const user = await this.userServices.create(newUserInput);
+
+    if(!user)
+    return new Error('fail insert')
+
     return user;
   }
 
-  @Mutation(() => ResultSetHeader)
+  @Mutation(() => Number)
   async updateUser(
     @Arg("id") id: number,
     @Arg("name") name: string,
@@ -34,6 +41,10 @@ export class UserResolver{
     @Arg("password") password: string
   ){
     const user = await this.userServices.update({id, name, email, password});
+
+    if(!user)
+    return new Error('fail update')
+
     return user;
   }
 

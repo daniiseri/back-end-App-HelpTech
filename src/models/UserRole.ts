@@ -9,5 +9,5 @@ export class UserRole{
   userId: number;
 
   @Field()
-  roleId: number;
+  roleid: number;
 }

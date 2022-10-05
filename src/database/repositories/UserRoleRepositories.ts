@@ -1,10 +1,10 @@
-import { connectToMySql } from '../index';
+import connectToPostgres from '../index';
 
 export class UserRoleRepositories{
   async findByUser(code:number){
-    const conn = await connectToMySql();
-    const query = 'SELECT * FROM user_role WHERE userId=?';
-    const [userRole] = await conn.execute(query, [code]);
-    return userRole;
+    const conn = await connectToPostgres();
+    const query = 'SELECT * FROM user_role WHERE userId=$1';
+    const {rows} = await conn.query(query, [code]);
+    return rows;
   }
 }

@@ -1,19 +1,15 @@
-import mysql from 'mysql2/promise';
-import bluebird from 'bluebird';
+import { Pool } from 'pg';
 
-const connectToMySql = async ()=>{
-  const connection = await mysql.createConnection({
-    host: 'localhost', 
-    user: 'root', 
-    database: 'help_tech', 
-    password: process.env.DB_PASSWORD,
-    Promise: bluebird
-  });
 
-  console.log('Database running');
-  return connection;
+const connectToPostgres = async()=>{
+  const pool = new Pool(
+    {
+      connectionString: process.env.POSTGRES_URL
+    }
+  );
+  return pool
 }
 
-connectToMySql();
+connectToPostgres()
 
-export { connectToMySql };
+export default connectToPostgres;

@@ -36,14 +36,15 @@ export class SessionResolver{
 
     const userRoles = await this.userRoleServices.getByUser(userFound.id) as UserRole[];
 
-    const promiseRoles = await userRoles.map(async ({roleId}) => {
-      const [{description}] = await this.roleServices.getById(roleId) as Role[];
+    const promiseRoles = await userRoles.map(async ({roleid}) => {
+      const [{description}] = await this.roleServices.getById(roleid) as Role[];
       return description;
     });
 
     const roles = await Promise.all(promiseRoles);
 
     const token = generateToken({id:userFound.id});
+    
     return {user:userFound, roles, token}
   }
 }
