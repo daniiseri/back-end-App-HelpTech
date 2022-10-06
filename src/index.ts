@@ -20,7 +20,8 @@ async function main(){
       const [token, roles] = req.headers?.authorization?.split(',') || [];
 
       return {token, roles:[roles]};
-    }
+    },
+    cache: 'bounded'
   })
 
   const URL = process.env.PORT || 4000;

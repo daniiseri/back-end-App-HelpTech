@@ -23,7 +23,8 @@ async function main() {
             var _a, _b;
             const [token, roles] = ((_b = (_a = req.headers) === null || _a === void 0 ? void 0 : _a.authorization) === null || _b === void 0 ? void 0 : _b.split(',')) || [];
             return { token, roles: [roles] };
-        }
+        },
+        cache: 'bounded'
     });
     const URL = process.env.PORT || 4000;
     await server.listen(URL);
