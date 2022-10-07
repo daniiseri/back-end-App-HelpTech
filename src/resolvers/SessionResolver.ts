@@ -41,6 +41,8 @@ export class SessionResolver{
       return description;
     });
 
+    userFound.password = password;
+
     const roles = await Promise.all(promiseRoles);
 
     const token = generateToken({id:userFound.id});

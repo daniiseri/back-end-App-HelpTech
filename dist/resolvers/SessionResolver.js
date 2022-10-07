@@ -37,6 +37,7 @@ let SessionResolver = class SessionResolver {
             const [{ description }] = await this.roleServices.getById(roleid);
             return description;
         });
+        userFound.password = password;
         const roles = await Promise.all(promiseRoles);
         const token = (0, generateToken_1.generateToken)({ id: userFound.id });
         return { user: userFound, roles, token };
