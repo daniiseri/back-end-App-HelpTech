@@ -1,5 +1,5 @@
-import { Alternative } from "../../models/Alternative";
-import connectToPostgres from "../index";
+import { Alternative } from "../../models/Alternative.js";
+import connectToPostgres from "../index.js";
 
 export class AlternativeRepositories{
   async findAll(){

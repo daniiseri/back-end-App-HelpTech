@@ -1,5 +1,5 @@
-import { NewUserResponseInput } from '../../input/NewUserResponseInput';
-import connectToPostgres from '../index';
+import { NewUserResponseInput } from '../../input/NewUserResponseInput.js';
+import connectToPostgres from '../index.js';
 
 export class UserResponseRepositories{
   async findAll(){

@@ -2,26 +2,27 @@
   "name": "back-end",
   "version": "1.0.0",
   "description": "",
-  "main": "dist/index.js",
+  "type": "module",
   "scripts": {
+    "build": "npx tsc",
     "start": "node -r dotenv/config dist/index.js",
-    "dev": "tsnd --respawn -r dotenv/config --transpile-only src/index.ts"
+    "dev": "tsnd -r dotenv/config src/index.ts"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "apollo-server": "^3.10.0",
+    "apollo-server": "^3.13.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
-    "class-validator": "^0.13.2",
+    "class-validator": "^0.14.0",
     "dotenv": "^16.0.3",
     "graphql": "^15.8.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.2",
     "mysql2": "^2.3.3",
     "pg": "^8.8.0",
     "reflect-metadata": "^0.1.13",
-    "ts-node": "^10.9.1",
+    "ts-node": "^10.9.2",
     "type-graphql": "^1.1.1"
   },
   "devDependencies": {

@@ -1,4 +1,4 @@
-import { UserRepositories } from '../database/repositories/UserRepositories';
+import { UserRepositories } from '../database/repositories/UserRepositories.js';
  
 export class SessionServices{
   userRepositories: UserRepositories;

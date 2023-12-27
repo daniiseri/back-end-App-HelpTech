@@ -1,7 +1,7 @@
-import connectToPostgres from "../index";
-import { encryptPassword } from "../../utils/bcrypt";
-import { User } from "../../models/User";
-import { NewUserInput } from "../../input/NewUserInput";
+import connectToPostgres from "../index.js";
+import { encryptPassword } from "../../utils/bcrypt.js";
+import { User } from "../../models/User.js";
+import { NewUserInput } from "../../input/NewUserInput.js";
 
 export class UserRepositories{
   async findAll(){

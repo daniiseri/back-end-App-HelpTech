@@ -1,6 +1,6 @@
-import { UserResponseRepositories } from "../database/repositories/UserResponseRepositories";
-import { NewUserResponseInput } from "../input/NewUserResponseInput";
-import { UserResponse } from "../models/UserResponse";
+import { UserResponseRepositories } from "../database/repositories/UserResponseRepositories.js";
+import { NewUserResponseInput } from "../input/NewUserResponseInput.js";
+import { UserResponse } from "../models/UserResponse.js";
 
 export class UserResponseServices{
   userResponseRepositories: UserResponseRepositories;

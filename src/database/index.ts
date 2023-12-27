@@ -1,5 +1,6 @@
-import { Client } from 'pg';
+import pg from 'pg';
 
+const { Client } = pg
 
 const connectToPostgres = async()=>{
   const client = new Client(

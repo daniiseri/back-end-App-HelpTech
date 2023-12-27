@@ -1,7 +1,7 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
-import { Category } from "../models/Category";
-import { CategoryServices } from "../services/CategoryServices";
-import { NewCategoryInput } from "../input/NewCategoryInput";
+import { Category } from "../models/Category.js";
+import { CategoryServices } from "../services/CategoryServices.js";
+import { NewCategoryInput } from "../input/NewCategoryInput.js";
 
 @Resolver()
 export class CategoryResolver{

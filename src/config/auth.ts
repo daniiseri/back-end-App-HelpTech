@@ -1,0 +1,1 @@
+export const config: { secret: string } = { secret: process.env.SECRET as string }

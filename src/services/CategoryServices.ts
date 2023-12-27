@@ -1,5 +1,5 @@
-import { CategoryRepositories } from '../database/repositories/CategoryRepositories';
-import { Category } from '../models/Category';
+import { CategoryRepositories } from '../database/repositories/CategoryRepositories.js';
+import { Category } from '../models/Category.js';
 
 export class CategoryServices{
   categoryRepositories: CategoryRepositories;

@@ -1,25 +1,36 @@
 import 'reflect-metadata';
-import path from 'path';
 import { ApolloServer } from 'apollo-server';
 import { buildSchema } from 'type-graphql';
-import { customAuthChecker } from './utils/customAuthChecker';
+import { customAuthChecker } from './utils/customAuthChecker.js';
+import { AlternativeResolver } from './resolvers/AlternativeResolver.js'
+import { CategoryResolver } from './resolvers/CategoryResolver.js'
+import { QuestResolver } from './resolvers/QuestResolver.js'
+import { SessionResolver } from './resolvers/SessionResolver.js'
+import { UserResolver } from './resolvers/UserResolver.js'
+import { UserResponseResolver } from './resolvers/UserResponseResolver.js'
+import path from 'path';
 
-async function main(){
+async function main() {
   const schema = await buildSchema({
     resolvers: [
-      path.resolve(__dirname, 'resolvers/**Resolver.ts')
+      AlternativeResolver,
+      CategoryResolver,
+      QuestResolver,
+      SessionResolver,
+      UserResolver,
+      UserResponseResolver
     ],
-    emitSchemaFile: path.resolve(__dirname, 'schema.gql'),
+    emitSchemaFile: path.resolve('schema.gql'),
     authChecker: customAuthChecker,
     authMode: "null",
   })
 
   const server = new ApolloServer({
     schema,
-    context: ({req}) => {
+    context: ({ req }) => {
       const [token, roles] = req.headers?.authorization?.split(',') || [];
 
-      return {token, roles:[roles]};
+      return { token, roles: [roles] };
     },
     cache: 'bounded'
   })

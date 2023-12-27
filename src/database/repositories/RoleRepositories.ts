@@ -1,4 +1,4 @@
-import  connectToPostgres  from '../index';
+import  connectToPostgres  from '../index.js';
 
 export class RoleRepositories{
   async findById(code:number){

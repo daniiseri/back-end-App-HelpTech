@@ -1,5 +1,5 @@
 import { AuthChecker, ResolverData } from "type-graphql";
-import { Credentials } from "../models/Login";
+import { Credentials } from "../models/Login.js";
 
 export const customAuthChecker:AuthChecker<Credentials> = async (
     { context }: ResolverData<Credentials>,

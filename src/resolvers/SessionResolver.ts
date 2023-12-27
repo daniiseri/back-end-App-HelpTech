@@ -1,13 +1,13 @@
 import { Arg, Mutation, Resolver } from "type-graphql";
-import { SessionServices } from "../services/SessionServices";
-import { Credentials } from '../models/Login';
-import { generateToken } from "../utils/generateToken";
-import { User } from "../models/User";
-import { checkPassword } from "../utils/bcrypt";
-import { UserRoleServices } from "../services/UserRoleServices";
-import { RoleServices } from "../services/RoleServices";
-import { Role } from "../models/Role";
-import { UserRole } from "../models/UserRole";
+import { SessionServices } from "../services/SessionServices.js";
+import { Credentials } from '../models/Login.js';
+import { generateToken } from "../utils/generateToken.js";
+import { User } from "../models/User.js";
+import { checkPassword } from "../utils/bcrypt.js";
+import { UserRoleServices } from "../services/UserRoleServices.js";
+import { RoleServices } from "../services/RoleServices.js";
+import { Role } from "../models/Role.js";
+import { UserRole } from "../models/UserRole.js";
 
 @Resolver()
 export class SessionResolver{

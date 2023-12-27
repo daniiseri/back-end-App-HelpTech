@@ -1,6 +1,5 @@
-import { QuestRepositories } from '../database/repositories/QuestRepositories';
-import { NewQuestInput } from '../input/NewQuestInput';
-import { Quest } from '../models/Quest';
+import { QuestRepositories } from '../database/repositories/QuestRepositories.js';
+import { Quest } from '../models/Quest.js';
 
 export class QuestServices{
   questRepositories: QuestRepositories;

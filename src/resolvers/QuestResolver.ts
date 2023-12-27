@@ -1,7 +1,7 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
-import { NewQuestInput } from "../input/NewQuestInput";
-import { Quest } from "../models/Quest";
-import { QuestServices } from "../services/QuestServices";
+import { NewQuestInput } from "../input/NewQuestInput.js";
+import { Quest } from "../models/Quest.js";
+import { QuestServices } from "../services/QuestServices.js";
 
 @Resolver()
 export class QuestResolver{

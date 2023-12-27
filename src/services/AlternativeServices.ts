@@ -1,5 +1,5 @@
-import { AlternativeRepositories } from '../database/repositories/AlternativeRepositories';
-import { Alternative } from '../models/Alternative';
+import { AlternativeRepositories } from '../database/repositories/AlternativeRepositories.js';
+import { Alternative } from '../models/Alternative.js';
 
 export class AlternativeServices{
   alternativeRepositories: AlternativeRepositories;

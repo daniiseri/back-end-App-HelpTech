@@ -1,7 +1,7 @@
 import { Arg, Authorized, Mutation, Query, Resolver } from "type-graphql";
-import { NewAlternativeInput } from "../input/NewAlternativeInput";
-import { Alternative } from "../models/Alternative";
-import { AlternativeServices } from "../services/AlternativeServices";
+import { NewAlternativeInput } from "../input/NewAlternativeInput.js";
+import { Alternative } from "../models/Alternative.js";
+import { AlternativeServices } from "../services/AlternativeServices.js";
 
 @Resolver()
 export class AlternativeResolver{

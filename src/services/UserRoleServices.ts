@@ -1,4 +1,4 @@
-import { UserRoleRepositories } from '../database/repositories/UserRoleRepositories';
+import { UserRoleRepositories } from '../database/repositories/UserRoleRepositories.js';
 
 export class UserRoleServices{
   userRoleRepositories: UserRoleRepositories;

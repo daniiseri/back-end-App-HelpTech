@@ -1,5 +1,5 @@
-import { Category } from "../../models/Category";
-import connectToPostgres from "../index";
+import { Category } from "../../models/Category.js";
+import connectToPostgres from "../index.js";
 
 export class CategoryRepositories{
   async findAll(){
