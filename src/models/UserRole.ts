@@ -6,8 +6,8 @@ export class UserRole{
   id: number;
 
   @Field()
-  userId: number;
+  IdUser: number;
 
   @Field()
-  roleid: number;
+  IdRole: number;
 }
