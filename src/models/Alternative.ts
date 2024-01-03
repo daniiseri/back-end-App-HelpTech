@@ -15,8 +15,8 @@ export class Alternative{
   level: number;
 
   @Field(type => Int, {nullable: true})
-  idCategory: number;
+  idcategory: number;
 
   @Field(type => Int, {nullable: true})
-  idQuest: number;
+  idquest: number;
 }

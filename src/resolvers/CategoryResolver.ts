@@ -16,6 +16,13 @@ export class CategoryResolver{
     const categories = await this.categoryServices.getAll();
     return categories;
   }
+  
+  @Query(() => Category)
+  async categoryByDescription(@Arg('description') description: string){
+    const result = await this.categoryServices.findByDescription(description)
+
+    return result
+  } 
 
   @Authorized('Admin')
   @Mutation(() => Number)

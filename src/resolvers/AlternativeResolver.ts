@@ -14,7 +14,7 @@ export class AlternativeResolver{
   @Query(() => [Alternative])
   async alternatives(){
     const alternatives = await this.alternativeServices.getAll();
-    return alternatives[0];
+    return alternatives;
   }
 
   @Query(() => [Alternative])
@@ -43,10 +43,10 @@ export class AlternativeResolver{
     @Arg("id") id: number,
     @Arg("description") description: string,
     @Arg("level") level: number,
-    @Arg("idCategory") idCategory: number,
-    @Arg("idQuests") idQuest: number
+    @Arg("idCategory") idcategory: number,
+    @Arg("idQuests") idquest: number
   ){
-    const result = await this.alternativeServices.update({id, description, level, idCategory, idQuest});
+    const result = await this.alternativeServices.update({id, description, level, idcategory, idquest});
     return result;
   }
 

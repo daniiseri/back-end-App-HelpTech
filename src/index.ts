@@ -8,6 +8,7 @@ import { QuestResolver } from './resolvers/QuestResolver.js'
 import { SessionResolver } from './resolvers/SessionResolver.js'
 import { UserResolver } from './resolvers/UserResolver.js'
 import { UserResponseResolver } from './resolvers/UserResponseResolver.js'
+import { UserRoleResolver } from './resolvers/UserRoleResolver.js'
 import path from 'path';
 
 async function main() {
@@ -18,7 +19,8 @@ async function main() {
       QuestResolver,
       SessionResolver,
       UserResolver,
-      UserResponseResolver
+      UserResponseResolver,
+      UserRoleResolver
     ],
     emitSchemaFile: path.resolve('schema.gql'),
     authChecker: customAuthChecker,
@@ -27,10 +29,10 @@ async function main() {
 
   const server = new ApolloServer({
     schema,
-    context: ({ req }) => {
-      const [token, roles] = req.headers?.authorization?.split(',') || [];
+    context: ({ req, res }) => {
+      const auth = req.headers.authorization
 
-      return { token, roles: [roles] };
+      return { req, res, auth }
     },
     cache: 'bounded'
   })

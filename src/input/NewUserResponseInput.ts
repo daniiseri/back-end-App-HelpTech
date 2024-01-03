@@ -1,10 +1,13 @@
-import { Field, InputType, Int } from "type-graphql";
+import { Field, InputType } from "type-graphql";
+import { IsInt } from 'class-validator'
 
 @InputType()
 export class NewUserResponseInput{
-  @Field(type => Int)
-  idAlternative: number;
+  @Field()
+  @IsInt()
+  idalternative: number;
 
-  @Field(type => Int)
-  idUser: number;
+  @Field()
+  @IsInt()
+  iduser: number;
 }

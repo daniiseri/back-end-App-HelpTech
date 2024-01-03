@@ -9,5 +9,5 @@ export class Quest{
   description: string;
 
   @Field(type => Int, {nullable: true})
-  idCategory: number;
+  idcategory: number;
 }

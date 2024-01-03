@@ -5,14 +5,14 @@
   "type": "module",
   "scripts": {
     "build": "npx tsc",
-    "start": "node -r dotenv/config dist/index.js",
-    "dev": "tsnd -r dotenv/config src/index.ts"
+    "start": "node -r dotenv/config dist/index.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "dependencies": {
     "apollo-server": "^3.13.0",
+    "apollo-server-express": "^3.13.0",
     "bcryptjs": "^2.4.3",
     "bluebird": "^3.7.2",
     "class-validator": "^0.14.0",

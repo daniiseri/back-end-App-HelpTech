@@ -18,7 +18,7 @@ export class AlternativeRepositories{
 
   async findByQuest(code: number){
     const conn = await connectToPostgres();
-    const query = 'SELECT * FROM alternative WHERE idQuest = 1$';
+    const query = 'SELECT * FROM alternative WHERE idquest = $1';
     const {rows} = await conn.query(query, [code]);
     return rows;
   }
@@ -33,7 +33,7 @@ export class AlternativeRepositories{
   async update(data: Alternative){
     const conn = await connectToPostgres();
     const query = 'UPDATE alternative SET description=$1, level=$2, idCategory=$3, idQuest=$4 WHERE id=$5';
-    const {rowCount} = await conn.query(query, [data.description, data.level, data.idCategory, data.idQuest, data.id]);
+    const {rowCount} = await conn.query(query, [data.description, data.level, data.idcategory, data.idquest, data.id]);
     return rowCount;
   }
 

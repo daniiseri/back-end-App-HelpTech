@@ -1,12 +1,13 @@
-import { Length } from "class-validator";
-import { Field, ID, InputType } from "type-graphql";
+import { Field, InputType } from "type-graphql";
+import { IsEmail } from 'class-validator'
 
 @InputType()
 export class NewUserInput{
-  @Field(type => ID)
+  @Field()
   name: string;
 
   @Field()
+  @IsEmail()
   email: string;
 
   @Field()

@@ -8,6 +8,14 @@ export class CategoryServices{
     this.categoryRepositories = new CategoryRepositories();
   }
 
+  async findById(idCategory: number){
+    return this.categoryRepositories.findById(idCategory)
+  }
+
+  async findByDescription(description: string){
+    return this.categoryRepositories.findByDescription(description)
+  }
+
   async getAll(){
     return this.categoryRepositories.findAll();
   }

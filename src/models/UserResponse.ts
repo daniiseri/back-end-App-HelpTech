@@ -1,4 +1,5 @@
 import { Field, ID, ObjectType } from "type-graphql";
+import { IsInt, IsDate } from 'class-validator' 
 
 @ObjectType()
 export class UserResponse{
@@ -6,11 +7,14 @@ export class UserResponse{
   id: number;
 
   @Field()
-  idAlternative: number;
+  @IsInt()
+  idalternative: number;
 
   @Field()
-  idUser: number;
+  @IsInt()
+  iduser: number;
 
   @Field()
+  @IsDate()
   date: Date;
 }

@@ -10,4 +10,7 @@ export class UserRole{
 
   @Field()
   IdRole: number;
+
+  @Field()
+  description: string;
 }
