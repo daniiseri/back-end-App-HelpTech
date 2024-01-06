@@ -8,6 +8,10 @@ export class AlternativeServices{
     this.alternativeRepositories = new AlternativeRepositories();
   }
 
+  async getById(idAlternative: number){
+    return this.alternativeRepositories.findById(idAlternative)
+  }
+
   async getAll(){
     return this.alternativeRepositories.findAll();
   }
