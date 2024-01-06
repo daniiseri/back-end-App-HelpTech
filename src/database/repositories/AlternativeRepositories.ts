@@ -13,7 +13,7 @@ export class AlternativeRepositories{
     const conn = await connectToPostgres();
     const query = 'SELECT * FROM alternative WHERE id = $1';
     const {rows} = await conn.query(query, [code]);
-    return rows;
+    return rows[0];
   }
 
   async findByQuest(code: number){

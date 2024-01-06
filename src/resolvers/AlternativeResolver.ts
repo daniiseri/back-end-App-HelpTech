@@ -11,6 +11,13 @@ export class AlternativeResolver{
     this.alternativeServices = new AlternativeServices();
   }
 
+  @Query(() => Alternative)
+  async alternativeById(@Arg("idAlternative") idAlternative: number){
+    const alternative = await this.alternativeServices.getById(idAlternative)
+
+    return alternative
+  }
+
   @Query(() => [Alternative])
   async alternatives(){
     const alternatives = await this.alternativeServices.getAll();
