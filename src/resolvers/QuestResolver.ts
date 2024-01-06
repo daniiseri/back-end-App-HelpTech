@@ -14,6 +14,13 @@ export class QuestResolver {
     this.categoryService = new CategoryServices();
   }
 
+  @Query(() => Quest)
+  async questById(@Arg("idQuest") idQuest: number){
+    const quest = await this.questService.getById(idQuest)
+    
+    return quest
+  }
+
   @Query(() => [Quest])
   async quests() {
     const quests = await this.questService.getAll();
